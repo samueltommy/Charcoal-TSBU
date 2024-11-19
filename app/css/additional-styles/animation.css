@@ -1,0 +1,55 @@
+.box {
+    --c: #FFD646; /* the border color */
+    --b: 3px;    /* the border thickness*/
+    --g: 5px;     /* the gap on hover */
+
+    padding: calc(var(--g) + var(--b));
+    --_g: #0000 25%,var(--c) 0;
+    background:
+            conic-gradient(from 180deg at top    var(--b) right var(--b),var(--_g))
+            var(--_i,200%) 0  /200% var(--_i,var(--b))  no-repeat,
+            conic-gradient(            at bottom var(--b) left  var(--b),var(--_g))
+            0   var(--_i,200%)/var(--_i,var(--b)) 200%  no-repeat;
+    transition: .3s, background-position .3s .3s;
+    cursor: pointer;
+}
+.box:hover {
+    --_i: 100%;
+    transition: .3s, background-size .3s .3s;
+}
+.transform-left{
+    transition: .3s ease-in;
+    transform: translateX(-2.5rem);
+}
+.transform-back{
+    transition: .3s ease-out;
+    transform: translateX(0rem);
+}
+.team-box:hover .team-name {
+    transition: .3s ease-out;
+    transform: translate(0, +2.5rem);
+    opacity: 0;
+
+}
+.team-box .team-name {
+    transition: .3s ease-in;
+    transform: translate(0, 0);
+    opacity: 1;
+}
+.team-box:hover .team-social {
+    transition: .3s ease-out;
+    transition-delay: .3s;
+    transform: translate(0, -4rem);
+    opacity: 1;
+}
+
+.team-box .team-social {
+    transition: .3s ease-out;
+    transform: translate(0, 2rem);
+    opacity: 0;
+}
+
+.team-box:hover .team-gradient{
+    padding-top: 40%;
+}
+
