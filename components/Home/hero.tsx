@@ -39,12 +39,15 @@ function Hero() {
                     <span className="text-[#FFD646]">T</span>HE&nbsp;
                     <span className="text-[#FFD646]">B</span>EST&nbsp;
                     <span className="text-[#FFD646]">F</span>OR&nbsp;
-                    <span className="text-[#FFD646]">C</span>HARCOAL,&nbsp;
-                    <br/>
+                    <span className="text-[#FFD646]">C</span>HARCOAL&nbsp;
                     <span className="text-[#FFD646]">B</span>RIQUETTES,&nbsp;
-                    <span className="text-[#FFD646]">B</span>AYONES&nbsp;
-                    <span className="text-[#FFD646]">P</span>RODUCTS&nbsp;
+                    <br/>
+                    <span className="text-[#FFD646]">H</span>ARDWOOD&nbsp;
+                    <span className="text-[#FFD646]">B</span>RIQUESTTES,&nbsp;
+                    <span className="text-[#FFD646]">A</span>ND&nbsp;
+                    <span className="text-[#FFD646]">B</span>ICHOTAN&nbsp;
                 </h1>
+                <br/>
                 <div className="  antialiased drop-shadow-xl">
                         <button
                             className={` my-2 ml-10 px-6 py-2 rounded-lg text-xl text-black-50 font-bold bg-[#FFD646] ${inter.className} hover:text-white hover:bg-orange-400 hover:translate-x-1 transition-all duration-300`}
@@ -52,6 +55,7 @@ function Hero() {
                             <span className="drop-shadow-md"> CHARCOAL NEEDS</span>
                         </button>
                 </div>
+                <br/>
                 <h4
                     className={`text-slate-300 md:text-xl text-lg py-2 font-bold bg-gradient-to-r from-[#ffffffdb] to-[#FFF] text-transparent bg-clip-text ${inter.className}`}
                 >
