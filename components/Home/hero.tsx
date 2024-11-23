@@ -39,13 +39,18 @@ function Hero() {
                     <span className="text-[#FFD646]">T</span>HE&nbsp;
                     <span className="text-[#FFD646]">B</span>EST&nbsp;
                     <span className="text-[#FFD646]">F</span>OR&nbsp;
-                    <span className="text-[#FFD646]">C</span>HARCOAL&nbsp;
+                    <span className="text-[#FFD646]">C</span>OCONUT&nbsp;
                     <span className="text-[#FFD646]">B</span>RIQUETTES,&nbsp;
                     <br/>
-                    <span className="text-[#FFD646]">H</span>ARDWOOD&nbsp;
-                    <span className="text-[#FFD646]">B</span>RIQUESTTES,&nbsp;
-                    <span className="text-[#FFD646]">A</span>ND&nbsp;
                     <span className="text-[#FFD646]">B</span>ICHOTAN&nbsp;
+                    <span className="text-[#FFD646]">C</span>HARCOAL,&nbsp;
+                    <span className="text-[#FFD646]">W</span>OOD&nbsp;
+                    <span className="text-[#FFD646]">P</span>ALLET,&nbsp;
+                    <br/>
+                    <span className="text-[#FFD646]">A</span>ND&nbsp;
+                    <span className="text-[#FFD646]">C</span>OCONUT&nbsp;
+                    <span className="text-[#FFD646]">S</span>HELL&nbsp;
+                    
                 </h1>
                 <br/>
                 <div className="  antialiased drop-shadow-xl">

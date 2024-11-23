@@ -27,15 +27,16 @@ export default function Profile(){
                         Pure Charcoal, Premium Choice
                     </h2>
                     <p className={`${inter.className} text-md mr-4 mb-8`}>
-                        PT. Tani Solusi Berjaya Utama is a leading charcoal briquette factory specializing in the production
-                        and export of high-quality coconut charcoal briquettes. With extensive experience in crafting
-                        premium charcoal briquettes, our factory is situated in Grobogan, Central Java, Indonesia.
+                        PT. Tani Solusi Berjaya Utama is a leading coconut briquetts, bichotan charcoal, wood pallet, 
+                        and coconut shell factory specializing in the production and export of high-quality products. 
+                        With extensive experience in crafting premium charcoal products, our factory is situated in 
+                        Grobogan, Central Java, Indonesia.
                         <br/><br/>
-                        We offer two primary types of charcoal briquettes tailored for Shisha, Hookah, and Barbecue
-                        applications, with the flexibility to meet various grades and custom requirements.
+                        We offer four main products, coconut briquettes, bichontan charcoal, wood pallet, and coconut 
+                        shell, with the flexibility to meet various grades and custom requirements.
                         <br/><br/>
                         Since our establishment in 2018, we've garnered vast experience and have had the privilege to
-                        export our premium charcoal briquettes to esteemed markets including the USA, Middle East,
+                        export our premium charcoal products to esteemed markets including the USA, Middle East,
                         Europe, and Brazil.
                     </p>
 

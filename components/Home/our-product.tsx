@@ -19,7 +19,7 @@ export default function OurProduct() {
                     </p>
                 </div>
 
-                <div className="mt-12 flex flex-wrap items-center justify-center md:gap-28 gap-2">
+                <div className="mt-12 flex flex-wrap items-center justify-center md:gap-15 gap-2">
                     <div data-aos="fade-up" data-aos-delay="100" className="m-8 grid grid-rows-2">
                         <Image
                             src={cube}
@@ -30,7 +30,7 @@ export default function OurProduct() {
                             quality={50}
                         />
                         <h4 className="h4">
-                            Cube
+                            Coconut Briquettes
                         </h4>
                     </div>
                     <div data-aos="fade-up" data-aos-delay="200" className="m-8 grid grid-rows-2">
@@ -42,7 +42,7 @@ export default function OurProduct() {
                             quality={50}
                         />
                         <h4 className="h4">
-                            Flat
+                            Bichontan Charcoal
                         </h4>
                     </div>
                     <div data-aos="fade-up" data-aos-delay="300" className="m-8 align-center justify-center grid grid-rows-2">
@@ -54,7 +54,7 @@ export default function OurProduct() {
                             quality={50}
                         />
                         <h4 className="h4">
-                            Finger
+                            Wood Pallet
                         </h4>
                     </div>
                     <div data-aos="fade-up" data-aos-delay="400" className="m-8 align-center justify-center grid grid-rows-2">
@@ -66,7 +66,7 @@ export default function OurProduct() {
                             quality={50}
                         />
                         <h4 className="h4">
-                            Hexagon
+                            Coconut Shell
                         </h4>
                     </div>
                 </div>
