@@ -1,10 +1,5 @@
-import Image from "next/image";
-import Background from "@/public/background.webp"
-import {AiFillInstagram,AiFillYoutube,AiFillFacebook} from "react-icons/ai"
 import VideoThumb from '@/public/img/video_thumb.webp'
-import {Separator} from "@/components/ui/separator";
 import ModalVideo from "@/components/micro/modal-video";
-import Link from "next/link";
 
 export default function OurHighlight() {
     return (

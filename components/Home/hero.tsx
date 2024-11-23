@@ -1,17 +1,13 @@
 import dynamic from 'next/dynamic'
-import Image, {StaticImageData} from "next/image";
-import Background from "@/public/img/bg1.webp";
+import {StaticImageData} from "next/image";
 import Link from "next/link";
 import {inter} from "@/app/api/util";
 import bg1 from "@/public/img/bg1.webp"
 import bg2 from "@/public/img/bg2.webp"
 import bg3 from "@/public/img/bg3.webp"
-import Carousel, {CarouselItem} from "@/components/micro/carousel";
-import {slickData} from "@/components/Home/production-prosess";
 import ResponsiveCarousel from "@/components/micro/carousel/responsive";
 import {MdMailOutline} from "react-icons/md";
 import {FaWhatsapp} from "react-icons/fa6";
-
 
 export const bgImage:StaticImageData[] = [
     bg1,
