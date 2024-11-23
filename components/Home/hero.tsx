@@ -1,73 +1,91 @@
-import Image, {StaticImageData} from "next/image";
-import Background from "@/public/img/bg1.webp";
+import dynamic from 'next/dynamic'
+import {StaticImageData} from "next/image";
 import Link from "next/link";
 import {inter} from "@/app/api/util";
-
 import bg1 from "@/public/img/bg1.webp"
 import bg2 from "@/public/img/bg2.webp"
 import bg3 from "@/public/img/bg3.webp"
-import Carousel, {CarouselItem} from "@/components/micro/carousel";
-import {slickData} from "@/components/Home/production-prosess";
 import ResponsiveCarousel from "@/components/micro/carousel/responsive";
+import {MdMailOutline} from "react-icons/md";
+import {FaWhatsapp} from "react-icons/fa6";
+
 export const bgImage:StaticImageData[] = [
     bg1,
     bg2,
     bg3
 ]
+
 function Hero() {
+    const WhatsAppIcon = dynamic(() => Promise.resolve(FaWhatsapp), { ssr: false })
+    const MailIcon = dynamic(() => Promise.resolve(MdMailOutline), { ssr: false })
+
     return (
-        <section data-aos="fade-up" data-aos-delay="500" className="min-w-full md:p-6 relative min-h-[70vh] px-10 md:min-h-[110vh] flex flex-col md:flex-row  md:pl-32 md:items-center">
+        <section 
+            data-aos="fade-up" 
+            data-aos-delay="500" 
+            className="relative min-h-screen w-full flex items-end justify-start px-4 md:px-10 lg:px-32 pb-32"
+        >
             <ResponsiveCarousel option="home"/>
-            {/*<Image*/}
-            {/*    src={bgImage[Math.floor(Math.random() * (bgImage.length))]}*/}
-            {/*    alt="Hero Login Image"*/}
-            {/*    fill*/}
-            {/*    className="z-[-1] object-cover max-h-screen"*/}
-            {/*    sizes="{(max-width: 768px) 768px, (max-width: 1440px) 1440px, 100vw}"*/}
-            {/*    priority={true}*/}
-            {/*    placeholder="blur"*/}
-            {/*    quality={50}*/}
-            {/*/>*/}
-            <div data-aos="fade-up" data-aos-delay="600" className="mt-12 w-12/12 md:w-auto px-9 py-16 ring-slate-200/70 rounded-[25px] bg-gradient-to-tr from-[#1C422580] to-[#1C4225E6] backdrop-blur-sm">
-                <h4
-                    className={` md:text-xl text-md py-2 font-bold bg-gradient-to-r from-[#ffffffdb] to-[#FFF] text-transparent bg-clip-text ${inter.className}`}
-                >
-                    <span className="text-[#FFD646]">Premium Export Quality</span> </h4>
-                <h1
-                    className={`md:text-4xl text-2xl pt-2 font-extrabold bg-gradient-to-r from-[#ffffffdb] to-[#FFF] text-transparent bg-clip-text ${inter.className}`}
-                >
-                    <span className="text-[#FFD646]">T</span>HE&nbsp;
-                    <span className="text-[#FFD646]">B</span>EST&nbsp;
-                    <span className="text-[#FFD646]">F</span>OR&nbsp;
-                    <span className="text-[#FFD646]">C</span>OCONUT&nbsp;
-                    <span className="text-[#FFD646]">B</span>RIQUETTES,&nbsp;
-                    <br/>
-                    <span className="text-[#FFD646]">B</span>ICHOTAN&nbsp;
-                    <span className="text-[#FFD646]">C</span>HARCOAL,&nbsp;
-                    <span className="text-[#FFD646]">W</span>OOD&nbsp;
-                    <span className="text-[#FFD646]">P</span>ALLET,&nbsp;
-                    <br/>
-                    <span className="text-[#FFD646]">A</span>ND&nbsp;
-                    <span className="text-[#FFD646]">C</span>OCONUT&nbsp;
-                    <span className="text-[#FFD646]">S</span>HELL&nbsp;
-                    
+
+            <div 
+                data-aos="fade-up" 
+                data-aos-delay="600" 
+                className="max-w-2xl w-full p-6 md:p-8 rounded-2xl bg-gradient-to-tr from-[#1C422590] to-[#1C4225E6] backdrop-blur-md shadow-xl"
+            >
+                <span className={`inline-block text-[#FFD646] text-base md:text-lg font-bold mb-3 ${inter.className}`}>
+                    Premium Export Quality
+                </span>
+
+                <h1 className={`text-2xl md:text-4xl font-extrabold leading-tight mb-6 text-white ${inter.className}`}>
+                    The Best For 
+                    <span className="text-[#FFD646]"> C</span>oconut
+                    <span className="text-[#FFD646]"> B</span>riquettes,
+                    <span className="text-[#FFD646]"> B</span>inchotan
+                    <span className="text-[#FFD646]"> C</span>harcoal,
+                    <span className="text-[#FFD646]"> W</span>ood 
+                    <span className="text-[#FFD646]"> P</span>allet, and
+                    <span className="text-[#FFD646]"> C</span>oconut
+                    <span className="text-[#FFD646]"> S</span>hell
                 </h1>
-                <br/>
-                <div className="  antialiased drop-shadow-xl">
-                        <button
-                            className={` my-2 ml-10 px-6 py-2 rounded-lg text-xl text-black-50 font-bold bg-[#FFD646] ${inter.className} hover:text-white hover:bg-orange-400 hover:translate-x-1 transition-all duration-300`}
-                        >
-                            <span className="drop-shadow-md"> CHARCOAL NEEDS</span>
-                        </button>
+
+                <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                    <Link href="/our-product" 
+                        className={`
+                            px-6 py-2.5 
+                            rounded-full 
+                            text-black 
+                            font-bold 
+                            text-base
+                            bg-[#FFD646] 
+                            hover:bg-orange-400 
+                            hover:text-white 
+                            transition-all 
+                            duration-300 
+                            shadow-lg
+                            text-center
+                            ${inter.className}
+                        `}
+                    >
+                        View Products
+                    </Link>
                 </div>
-                <br/>
-                <h4
-                    className={`text-slate-300 md:text-xl text-lg py-2 font-bold bg-gradient-to-r from-[#ffffffdb] to-[#FFF] text-transparent bg-clip-text ${inter.className}`}
-                >
-                    <span className="text-[#FFD646]">PT. Tani Solusi Berjaya Utama</span> </h4>
+
+                <div className="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 border-t border-white/20">
+                    <h4 className={`text-[#FFD646] text-lg md:text-xl font-bold ${inter.className}`}>
+                        PT. Tani Solusi Berjaya Utama
+                    </h4>
+                    <div className="flex gap-4">
+                        <Link href="https://wa.me/818064228470" 
+                            className="text-white hover:text-[#FFD646] transition-all duration-300">
+                            <WhatsAppIcon size={20} />
+                        </Link>
+                        <Link href="mailto:adamsatrio@tsbu.co.id"
+                            className="text-white hover:text-[#FFD646] transition-all duration-300">
+                            <MailIcon size={20} />
+                        </Link>
+                    </div>
+                </div>
             </div>
-
-
         </section>
     );
 }

@@ -1,7 +1,7 @@
 'use client'
 
+import dynamic from 'next/dynamic'
 import { useState, useEffect } from 'react'
-
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import Logo from './logo'
@@ -23,6 +23,10 @@ import {
 import {cn} from "@/lib/utils";
 import {buttonVariants} from "@/components/ui/button";
 
+const DynamicLogo = dynamic(() => import('./logo'), {
+  ssr: false
+})
+
 export default function Header({active} : {active?:string}) {
   const [top, setTop] = useState<boolean>(true)
   const pathname = usePathname()
@@ -41,70 +45,76 @@ export default function Header({active} : {active?:string}) {
     return () => window.removeEventListener('scroll', scrollHandler)
   }, [top])
 
-  return (
-    <header data-aos="fade-up" data-aos-duration="500" className={`${pathname==="/"?"":"bg-white"} fixed w-full z-30 md:bg-opacity-90 transition duration-300 ease-in-out ${!top ? 'bg-white backdrop-blur-lg shadow-lg' : ''}`}>
-      <div className="max-w-6xl mx-auto  px-5 sm:px-6">
-        <div className="flex items-center justify-between h-16 md:h-20">
-
-          {/* Site branding */}
-          <div className="m-auto">
-            <Logo className="w-8 h-8"/>
+return (
+    <header className={`${pathname==="/"?"":"bg-white/95"} fixed w-full z-30 transition-all duration-300 ease-in-out ${!top ? 'bg-white/95 backdrop-blur-md shadow-sm' : ''}`}>
+      <div className="max-w-7xl mx-auto px-5 sm:px-6">
+        <div className="flex items-center justify-between h-20">
+          {/* Logo */}
+          <div className="flex items-center">
+            <Link href="/" legacyBehavior>
+              <a>
+                <DynamicLogo className="w-10 h-10"/>
+              </a>
+            </Link>
           </div>
 
           {/* Desktop navigation */}
-          <nav className="hidden md:flex md:grow">
-            {/* Desktop sign in links */}
-            <ul className="flex grow justify-end flex-wrap items-center">
+          <nav className="hidden md:flex md:grow items-center justify-end">
+            <ul className="flex items-center gap-8">
               {navbar.map((object, index) => (
-                  <li key={index}>
-                    <Link
-                        href={"/"+object.link}
-                        className={`${active === object.link ? isActive : nonActive} font-medium hover:text-[#FFD646] px-5 py-3 flex items-center transition duration-150 ease-in-out`}
-                    >
-                      {object.name}
-                    </Link>
-                  </li>
+                <li key={index}>
+                  <Link
+                    href={`/${object.link}`}
+                    className={`${
+                      active === object.link ? isActive : nonActive
+                    } relative font-medium text-sm tracking-wide hover:text-[#FFD646] transition-colors
+                    ${active === object.link ? 'after:content-[""] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-0.5 after:bg-[#FFD646]' : ''}`}
+                  >
+                    {object.name}
+                  </Link>
+                </li>
               ))}
-
               <li>
                 <AlertDialog>
                   <AlertDialogTrigger asChild>
-                    <button className="btn-sm text-gray-200 bg-[#1C4225] hover:bg-[#FFD646] hover:text-black ml-3">
-                      <span>Contact</span>
-                      {/*<FaWhatsapp  className="p-2 text-md text-4xl text-white" />*/}
-                      <svg className="w-3 h-3 fill-current text-gray-400 shrink-0 ml-2 -mr-1" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M11.707 5.293L7 .586 5.586 2l3 3H0v2h8.586l-3 3L7 11.414l4.707-4.707a1 1 0 000-1.414z" fillRule="nonzero" />
-                      </svg>
+                    <button className="px-6 py-2.5 bg-[#1C4225] text-white text-sm rounded-full font-medium hover:bg-[#FFD646] hover:text-black transition-all duration-300 shadow-sm">
+                      Contact Us
                     </button>
                   </AlertDialogTrigger>
-                  <AlertDialogContent>
+                  <AlertDialogContent className="bg-white rounded-xl p-6 max-w-md w-full">
                     <AlertDialogHeader>
-                      <AlertDialogTitle>Plese select contact below</AlertDialogTitle>
+                      <AlertDialogTitle className="text-2xl font-bold text-center text-[#1C4225] mb-6">
+                        Choose Your Preferred Contact Method
+                      </AlertDialogTitle>
                     </AlertDialogHeader>
-                    <AlertDialogFooter className={'flex gap-4'}>
-                      <AlertDialogCancel>Cancel</AlertDialogCancel>
-                      <Link href="https://wa.me/818064228470" className={'bg-[#1C4225] text-white p-1 px-2 rounded-md flex flex-row justify-center items-center'} >
-                        WhatsApp <FaWhatsapp className='ml-2' />
-                      </Link>
-                      <button>
-                        <Link href="mailto:adamsatrio@tsbu.co.id" className={
-                          cn(
-                              buttonVariants({ variant: "outline" }),
-                              'bg-black text-white p-1 px-2 rounded-md flex flex-row items-center')} >
-                          Mail <MdMailOutline className='ml-2' />
+                    <div className="flex flex-col gap-4">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <Link 
+                          href="https://wa.me/818064228470" 
+                          className="w-full bg-[#25D366] text-white py-3 px-8 rounded-full flex items-center justify-center gap-3 hover:bg-opacity-90 transition-all duration-300 font-medium"
+                        >
+                          <FaWhatsapp className="text-xl" />
+                          <span>WhatsApp</span>
                         </Link>
-                      </button>
-                    </AlertDialogFooter>
+                        <Link 
+                          href="mailto:adamsatrio@tsbu.co.id" 
+                          className="w-full bg-[#1C4225] text-white py-3 px-8 rounded-full flex items-center justify-center gap-3 hover:bg-opacity-90 transition-all duration-300 font-medium"
+                        >
+                          <MdMailOutline className="text-xl" />
+                          <span>Email</span>
+                        </Link>
+                      </div>
+                      <AlertDialogCancel className="w-full rounded-full border-2 px-8 hover:bg-gray-100 transition-all duration-300">
+                        Cancel
+                      </AlertDialogCancel>
+                    </div>
                   </AlertDialogContent>
                 </AlertDialog>
-
               </li>
             </ul>
-
           </nav>
 
           <MobileMenu active={active}/>
-
         </div>
       </div>
     </header>

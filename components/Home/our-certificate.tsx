@@ -1,32 +1,55 @@
-export default function OurCertificate(){
-    return(
-        <>
-            <div className="w-full mt-12">
-                <div className="w-full py-10 flex max-xl:bg-[#FFD646] items-center justify-center flex-col gap-8 xl:flex-row ">
-                    <div className="xl:py-10 bg-[#FFD646] flex flex-col w-[55vw] items-center xl:skew-x-[20deg] ml-[-3rem]">
-                        <h1 className="h3 text-center xl:skew-x-[-20deg]">
-                            Our Certificate
-                        </h1>
-                        <p className='mt-6 mb-10 md:w-6/12 w-12/12 text-grey-200 text-center xl:skew-x-[-20deg]'>
-                            Our factories operate under official licenses,
-                            in addition to certifications for factories and products
-                        </p>
+import Image from 'next/image'
+
+export default function OurCertificate() {
+    return (
+        <section className="w-screen py-24 bg-gradient-to-b from-white to-gray-50">
+            <div className="max-w-[90rem] mx-auto px-4">
+                <div className="grid lg:grid-cols-2 gap-12 items-center">
+                    {/* Content Section */}
+                    <div className="bg-[#FFD646] rounded-2xl p-12 lg:p-16">
+                        <div data-aos="fade-right" className="max-w-xl">
+                            <h2 className="text-4xl md:text-5xl font-bold mb-6 drop-shadow-sm">
+                                Our Certificates
+                            </h2>
+                            <p className="text-lg text-black/70 font-medium">
+                                Our factories operate under official licenses,
+                                in addition to certifications for factories and products
+                            </p>
+                        </div>
                     </div>
-                    <div className="flex flex-wrap items-center justify-center gap-10">
-                        <div className="bg-white p-2 m-2 rounded">
-                            <img className="max-w-[10rem]" src="./logo/carsurin_logo.png" alt="eror"/>
-                        </div>
-                        <div className="bg-white p-2 m-2 rounded">
-                            <img className="max-w-[10rem]" src="./logo/Seal_of_the_Ministry_of_Finance_of_the_Republic_of_Indonesia.png" alt="eror"/>
-                        </div>
-                        <div className="bg-white p-2 m-2 rounded">
-                            <img className="max-w-[10rem]" src="./logo/pengayoman.png" alt="eror"/>
-                        </div>
 
-
+                    {/* Certificates Grid */}
+                    <div data-aos="fade-left" className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+                            <Image 
+                                src="/logo/carsurin_logo.png"
+                                alt="Carsurin Certificate"
+                                width={200}
+                                height={200}
+                                className="w-full h-auto object-contain"
+                            />
+                        </div>
+                        <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+                            <Image 
+                                src="/logo/Seal_of_the_Ministry_of_Finance_of_the_Republic_of_Indonesia.png"
+                                alt="Ministry of Finance Certificate"
+                                width={200}
+                                height={200}
+                                className="w-full h-auto object-contain"
+                            />
+                        </div>
+                        <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+                            <Image 
+                                src="/logo/pengayoman.png"
+                                alt="Pengayoman Certificate"
+                                width={200}
+                                height={200}
+                                className="w-full h-auto object-contain"
+                            />
+                        </div>
                     </div>
                 </div>
             </div>
-        </>
+        </section>
     )
 }
