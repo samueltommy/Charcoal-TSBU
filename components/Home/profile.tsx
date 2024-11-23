@@ -1,11 +1,20 @@
 import Image from "next/image"
 import {inter} from "@/app/api/util";
-import {BsCheckLg, BsDot} from "react-icons/bs";
+import {BsCheckLg} from "react-icons/bs";
 import {useRouter} from "next/navigation";
 import ResponsiveCarousel from "@/components/micro/carousel/responsive";
 
+// Move this outside component to prevent recreation on each render
+const features = [
+    '100% Coconut shell materials',
+    'Smokeless, odorless, low ash content',
+    'Long burning time, quick ignition time',
+    'Premium export quality'
+]
+
 export default function Profile() {
     const router = useRouter()
+    
     return (
         <section className="w-full px-4 py-16 md:py-24 bg-gray-50">
             <div className="max-w-[90rem] mx-auto">
@@ -44,12 +53,7 @@ export default function Profile() {
                         </div>
 
                         <div className="grid md:grid-cols-2 gap-4">
-                            {[
-                                '100% Coconut shell materials',
-                                'Smokeless, odorless, low ash content',
-                                'Long burning time, quick ignition time',
-                                'Premium export quality'
-                            ].map((item, index) => (
+                            {features.map((item, index) => (
                                 <div key={index} className="flex items-center gap-3 bg-white p-4 rounded-xl shadow-sm">
                                     <div className="bg-[#1C4225] p-2 rounded-full">
                                         <BsCheckLg className="text-white" />

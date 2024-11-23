@@ -1,8 +1,8 @@
+import dynamic from 'next/dynamic'
 import Image, {StaticImageData} from "next/image";
 import Background from "@/public/img/bg1.webp";
 import Link from "next/link";
 import {inter} from "@/app/api/util";
-
 import bg1 from "@/public/img/bg1.webp"
 import bg2 from "@/public/img/bg2.webp"
 import bg3 from "@/public/img/bg3.webp"
@@ -20,6 +20,9 @@ export const bgImage:StaticImageData[] = [
 ]
 
 function Hero() {
+    const WhatsAppIcon = dynamic(() => Promise.resolve(FaWhatsapp), { ssr: false })
+    const MailIcon = dynamic(() => Promise.resolve(MdMailOutline), { ssr: false })
+
     return (
         <section 
             data-aos="fade-up" 
@@ -27,7 +30,7 @@ function Hero() {
             className="relative min-h-screen w-full flex items-end justify-start px-4 md:px-10 lg:px-32 pb-32"
         >
             <ResponsiveCarousel option="home"/>
-            
+
             <div 
                 data-aos="fade-up" 
                 data-aos-delay="600" 
@@ -78,11 +81,11 @@ function Hero() {
                     <div className="flex gap-4">
                         <Link href="https://wa.me/818064228470" 
                             className="text-white hover:text-[#FFD646] transition-all duration-300">
-                            <FaWhatsapp size={20} />
+                            <WhatsAppIcon size={20} />
                         </Link>
                         <Link href="mailto:adamsatrio@tsbu.co.id"
                             className="text-white hover:text-[#FFD646] transition-all duration-300">
-                            <MdMailOutline size={20} />
+                            <MailIcon size={20} />
                         </Link>
                     </div>
                 </div>

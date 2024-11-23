@@ -1,3 +1,5 @@
+import Image from 'next/image'
+
 export default function OurCertificate() {
     return (
         <section className="w-screen py-24 bg-gradient-to-b from-white to-gray-50">
@@ -19,24 +21,30 @@ export default function OurCertificate() {
                     {/* Certificates Grid */}
                     <div data-aos="fade-left" className="grid grid-cols-1 md:grid-cols-3 gap-8">
                         <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
-                            <img 
-                                className="w-full h-auto object-contain" 
-                                src="./logo/carsurin_logo.png" 
+                            <Image 
+                                src="/logo/carsurin_logo.png"
                                 alt="Carsurin Certificate"
+                                width={200}
+                                height={200}
+                                className="w-full h-auto object-contain"
                             />
                         </div>
                         <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
-                            <img 
-                                className="w-full h-auto object-contain" 
-                                src="./logo/Seal_of_the_Ministry_of_Finance_of_the_Republic_of_Indonesia.png" 
+                            <Image 
+                                src="/logo/Seal_of_the_Ministry_of_Finance_of_the_Republic_of_Indonesia.png"
                                 alt="Ministry of Finance Certificate"
+                                width={200}
+                                height={200}
+                                className="w-full h-auto object-contain"
                             />
                         </div>
                         <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
-                            <img 
-                                className="w-full h-auto object-contain" 
-                                src="./logo/pengayoman.png" 
+                            <Image 
+                                src="/logo/pengayoman.png"
                                 alt="Pengayoman Certificate"
+                                width={200}
+                                height={200}
+                                className="w-full h-auto object-contain"
                             />
                         </div>
                     </div>

@@ -1,3 +1,4 @@
+import React from 'react'
 import ResponsiveCarousel from "@/components/micro/carousel/responsive";
 import {
     AlertDialog, AlertDialogCancel,

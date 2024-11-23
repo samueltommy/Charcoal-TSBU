@@ -12,7 +12,8 @@ interface ModalVideoProps {
   thumbAlt: string
   videoWidth: number
   videoHeight: number
-  className?: string  
+  className?: string 
+  videoUrl?: string 
 }
 
 export default function ModalVideo({
@@ -22,7 +23,8 @@ export default function ModalVideo({
   thumbAlt,
   videoWidth,
   videoHeight,
-  className
+  className,
+  videoUrl
 }: ModalVideoProps) {
   const [modalOpen, setModalOpen] = useState<boolean>(false)
   const videoRef = useRef<HTMLVideoElement>(null)
@@ -72,7 +74,13 @@ export default function ModalVideo({
             <div className="absolute bottom-0 left-0 right-0 flex items-center justify-center mb-4">
                 <button 
                     className="flex items-center bg-white/90 rounded-full font-medium group p-2 md:p-4 shadow-lg hover:bg-white transition-colors duration-300" 
-                    onClick={() => { setModalOpen(true) }}
+                    onClick={() => { 
+                      if (videoUrl) {
+                          window.open(videoUrl, '_blank')
+                      } else {
+                          setModalOpen(true)
+                      }
+                    }}
                 >
                     <svg className="w-4 h-4 md:w-6 md:h-6 fill-current text-gray-400 group-hover:text-blue-600 shrink-0" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10zm0 2C5.373 24 0 18.627 0 12S5.373 0 12 0s12 5.373 12 12-5.373 12-12 12z" />

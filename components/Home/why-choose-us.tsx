@@ -1,8 +1,4 @@
-import Background from "@/public/background.webp";
-import Image from "next/image";
-import {BsCheckLg} from "react-icons/bs";
-import {useRouter} from "next/navigation";
-import {Separator} from "@/components/ui/separator";
+import Image from "next/image"
 
 export default function WhyChooseUs() {
     return (
@@ -25,16 +21,16 @@ export default function WhyChooseUs() {
                         className="bg-white rounded-2xl shadow-lg overflow-hidden group hover:shadow-xl transition-all duration-300"
                     >
                         <div className="aspect-4/3 overflow-hidden">
-                            <img
+                            <Image
                                 src="/img/Illustration7.webp"
-                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                                 alt="Reliability"
+                                width={800}
+                                height={600}
+                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                             />
                         </div>
                         <div className="p-8">
-                            <h3 className="text-2xl h3 mb-4">
-                                Reliability
-                            </h3>
+                            <h3 className="text-2xl h3 mb-4">Reliability</h3>
                             <p className="text-gray-600 leading-relaxed">
                                 Our products are customized based on grade and specific requirements.
                                 We are dedicated to ensuring the quality of our products through rigorous checks,
@@ -47,16 +43,16 @@ export default function WhyChooseUs() {
                         className="bg-white rounded-2xl shadow-lg overflow-hidden group hover:shadow-xl transition-all duration-300"
                     >
                         <div className="aspect-4/3 overflow-hidden">
-                            <img
+                            <Image
                                 src="/img/Illustration8.webp"
-                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                                 alt="Quality"
+                                width={800}
+                                height={600}
+                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                             />
                         </div>
                         <div className="p-8">
-                            <h3 className="text-2xl h3 mb-4">
-                                Quality
-                            </h3>
+                            <h3 className="text-2xl h3 mb-4">Quality</h3>
                             <p className="text-gray-600 leading-relaxed">
                                 Our unwavering commitment is to provide the utmost quality throughout our entire supply chain,
                                 encompassing raw materials, manufacturing processes, production, and packaging.

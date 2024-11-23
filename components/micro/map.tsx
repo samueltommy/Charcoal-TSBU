@@ -1,7 +1,6 @@
 import React from "react";
 import Link from "next/link";
 
-
 function Maps() {
     return (
         <section className="py-24 bg-gradient-to-b from-gray-50 to-white">
@@ -20,7 +19,7 @@ function Maps() {
                     </Link>
                 </div>
             </div>
-        </section>
+        </section> 
     )
 }
 

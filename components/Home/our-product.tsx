@@ -63,6 +63,7 @@ export default function OurProduct() {
                                     className="w-20 h-20 mx-auto object-contain"
                                     priority={true}
                                     quality={50}
+                                    loading="eager"
                                 />
                             </div>
                             <h4 className="text-xl font-semibold text-[#1C4225] text-center group-hover:text-[#FFD646] transition-all duration-300">

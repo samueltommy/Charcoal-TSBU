@@ -1,7 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-
+import React, { useCallback, useState, useEffect } from 'react'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import Logo from './logo'
@@ -32,15 +31,15 @@ export default function Header({active} : {active?:string}) {
   const nonActive = "text-[#1C4225]"
   // detect whether user has scrolled the page down by 10px
 
-  useEffect(() => {
-    const scrollHandler = () => {
-        window.pageYOffset > 10 ? setTop(false) : setTop(true)
-    }
-    scrollHandler()
-    window.addEventListener('scroll', scrollHandler)
-    return () => window.removeEventListener('scroll', scrollHandler)
-  }, [top])
+  const scrollHandler = useCallback(() => {
+      window.pageYOffset > 10 ? setTop(false) : setTop(true)
+  }, [])
 
+  useEffect(() => {
+      scrollHandler()
+      window.addEventListener('scroll', scrollHandler)
+      return () => window.removeEventListener('scroll', scrollHandler)
+  }, [scrollHandler])
 
   return (
     <header data-aos="fade-down" 
@@ -67,7 +66,7 @@ export default function Header({active} : {active?:string}) {
                     href={`/${item.link}`}
                     className={`
                         ${active === item.link ? isActive : nonActive} 
-                        font-medium hover:text-[#FFD646] 
+                        font-medium hover:text-green-600 
                         transition-colors duration-300
                     `}
                 >
