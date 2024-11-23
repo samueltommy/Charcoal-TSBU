@@ -36,6 +36,7 @@
     "@types/react": "latest",
     "@types/react-dom": "latest",
     "autoprefixer": "latest",
+    "gh-pages": "^6.2.0",
     "postcss": "latest",
     "tailwindcss": "latest",
     "typescript": "latest"
