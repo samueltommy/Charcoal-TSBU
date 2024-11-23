@@ -4,58 +4,73 @@ import {BsCheckLg, BsDot} from "react-icons/bs";
 import {useRouter} from "next/navigation";
 import ResponsiveCarousel from "@/components/micro/carousel/responsive";
 
-export default function Profile(){
+export default function Profile() {
     const router = useRouter()
-    return(
-        <>
-            <div className="md:grid relative top-[-12rem] md:top-0 md:grid-cols-2 md:grid-rows-1 md:items-center justify-center md:min-h-[60vh]">
-                <div data-aos="fade-right" data-aos-duration="400" className=" w-full h-full" >
-                    <div className="mt-20 md:m-16 w-full md:w-10/12">
-                        <ResponsiveCarousel className="max-h-4/12" option="factory"/>
+    return (
+        <section className="w-full px-4 py-16 md:py-24 bg-gray-50">
+            <div className="max-w-[90rem] mx-auto">
+                <div className="flex flex-col md:flex-row items-center gap-12 md:gap-20">
+                    {/* Image Section */}
+                    <div data-aos="fade-right" data-aos-duration="400" className="w-full md:w-7/12 lg:w-3/5">
+                        <div className="rounded-2xl overflow-hidden shadow-xl">
+                            <ResponsiveCarousel option="factory" />
+                        </div>
                     </div>
-                    {/*<Image*/}
-                    {/*    src="/img/logo.webp"*/}
-                    {/*    height={100}*/}
-                    {/*    width={300}*/}
-                    {/*    quality={50}*/}
-                    {/*    alt="Hero"*/}
-                    {/*    className="object-contain w-auto h-auto"*/}
-                    {/*/>*/}
-                </div>
-                <div data-aos="fade-left" data-aos-delay="200" data-aos-duration="400" className="md:px-0 px-4 flex-col grow  text-center md:text-left ">
-                    <h2 className={`h2  justify-center mb-8`}>
-                        Pure Charcoal, Premium Choice
-                    </h2>
-                    <p className={`${inter.className} text-md mr-4 mb-8`}>
-                        PT. Tani Solusi Berjaya Utama is a leading charcoal briquette factory specializing in the production
-                        and export of high-quality coconut charcoal briquettes. With extensive experience in crafting
-                        premium charcoal briquettes, our factory is situated in Grobogan, Central Java, Indonesia.
-                        <br/><br/>
-                        We offer two primary types of charcoal briquettes tailored for Shisha, Hookah, and Barbecue
-                        applications, with the flexibility to meet various grades and custom requirements.
-                        <br/><br/>
-                        Since our establishment in 2018, we've garnered vast experience and have had the privilege to
-                        export our premium charcoal briquettes to esteemed markets including the USA, Middle East,
-                        Europe, and Brazil.
-                    </p>
 
-                    <ul>
-                        <li className="flex flex-row">
-                            <BsDot className="rounded-full text-3xl"/> 100% Coconut shell materials
-                        </li>
-                        <li className="flex flex-row" >
-                            <BsDot className="rounded-full text-3xl"/> Smokeless, odorless, low ash content
-                        </li>
-                        <li className="flex flex-row" >
-                            <BsDot className="rounded-full text-3xl"/> Long burning time, quick ignition time
-                        </li>
-                    </ul>
-                    <button onClick={() => router.push('/about')} className="btn my-8 text-white bg-[#FFD646] hover:bg-green-700">
-                        Know More
-                    </button>
+                    {/* Content Section */}
+                    <div data-aos="fade-left" data-aos-delay="200" data-aos-duration="400" 
+                        className="w-full md:w-1/2 space-y-8"
+                    >
+                        <h2 className={`text-4xl md:text-5xl h2 leading-tight`}>
+                            Pure Charcoal, Premium Choice
+                        </h2>
 
+                        <div className={`${inter.className} text-gray-600 space-y-6 text-lg`}>
+                            <p>
+                                PT. Tani Solusi Berjaya Utama is a leading coconut briquetts, bichotan charcoal, wood pallet, 
+                                and coconut shell factory specializing in the production and export of high-quality products. 
+                                With extensive experience in crafting premium charcoal products, our factory is situated in 
+                                Grobogan, Central Java, Indonesia.
+                            </p>
+                            <p>
+                                We offer four main products, coconut briquettes, bichontan charcoal, wood pallet, and coconut 
+                                shell, with the flexibility to meet various grades and custom requirements.
+                            </p>
+                            <p>
+                                Since our establishment in 2018, we've garnered vast experience and have had the privilege to
+                                export our premium charcoal products to esteemed markets including the USA, Middle East,
+                                Europe, and Brazil.
+                            </p>
+                        </div>
+
+                        <div className="grid md:grid-cols-2 gap-4">
+                            {[
+                                '100% Coconut shell materials',
+                                'Smokeless, odorless, low ash content',
+                                'Long burning time, quick ignition time',
+                                'Premium export quality'
+                            ].map((item, index) => (
+                                <div key={index} className="flex items-center gap-3 bg-white p-4 rounded-xl shadow-sm">
+                                    <div className="bg-[#1C4225] p-2 rounded-full">
+                                        <BsCheckLg className="text-white" />
+                                    </div>
+                                    <span className="text-gray-700 font-medium">{item}</span>
+                                </div>
+                            ))}
+                        </div>
+
+                        <button 
+                            onClick={() => router.push('/about')} 
+                            className="inline-flex items-center px-8 py-4 rounded-full bg-[#1C4225] text-white hover:bg-[#FFD646] hover:text-black transition-all duration-300 text-lg font-semibold"
+                        >
+                            Discover More
+                            <svg className="w-5 h-5 ml-2" viewBox="0 0 24 24" fill="none">
+                                <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                            </svg>
+                        </button>
+                    </div>
                 </div>
             </div>
-        </>
+        </section>
     )
 }

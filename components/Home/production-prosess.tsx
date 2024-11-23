@@ -9,7 +9,7 @@ export const dataSlickHome:slickData[] =
         // {img:"/img/Home3.webp",text:"home"},
         // {img:"/img/Home2.webp",text:"home"},
         // {img:"/img/Home1.webp",text:"home"},
-        //  {img:"/img/Home4.webp",text:"home"},
+        // {img:"/img/Home4.webp",text:"home"},
         {img:"/img/Home5.webp",text:"home"}
     ]
 export const dataSlickFactory:slickData[] =

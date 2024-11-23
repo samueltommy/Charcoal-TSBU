@@ -10,7 +10,8 @@ import {
   AlertDialogContent, AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-  AlertDialogTrigger
+  AlertDialogTrigger,
+  AlertDialogDescription
 } from "@/components/ui/alert-dialog";
 import {FaWhatsapp} from "react-icons/fa6";
 import {cn} from "@/lib/utils";
@@ -98,36 +99,44 @@ export default function MobileMenu({active} : {active?:string}) {
             ))}
 
             <li>
-              <AlertDialog>
-                <AlertDialogTrigger asChild>
-                  <button className="btn-sm text-gray-200 bg-gray-900 hover:bg-gray-800 w-full my-2" >
-                    <span>Contact</span>
-                    {/*<FaWhatsapp  className="p-2 text-md text-4xl text-white" />*/}
-                    <svg className="w-3 h-3 fill-current text-gray-400 shrink-0 ml-2 -mr-1" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M11.707 5.293L7 .586 5.586 2l3 3H0v2h8.586l-3 3L7 11.414l4.707-4.707a1 1 0 000-1.414z" fillRule="nonzero" />
-                    </svg>
-                  </button>
-                </AlertDialogTrigger>
-                <AlertDialogContent>
-                  <AlertDialogHeader>
-                    <AlertDialogTitle>Plese select contact below</AlertDialogTitle>
-                  </AlertDialogHeader>
-                  <AlertDialogFooter className={'flex gap-4'}>
-                    <AlertDialogCancel>Cancel</AlertDialogCancel>
-                    <Link href="https://wa.me/818064228470" className={'bg-[#1C4225] text-white p-1 px-2 rounded-md flex flex-row justify-center items-center'} >
-                      WhatsApp <FaWhatsapp className='ml-2' />
-                    </Link>
-                    <button>
-                      <Link href="mailto:adamsatrio@tsbu.co.id" className={
-                        cn(
-                            buttonVariants({ variant: "outline" }),
-                            'bg-black text-white p-1 px-2 rounded-md flex flex-row items-center')} >
-                        Mail <MdMailOutline className='ml-2' />
-                      </Link>
-                    </button>
-                  </AlertDialogFooter>
-                </AlertDialogContent>
-              </AlertDialog>
+            <AlertDialog>
+              <AlertDialogTrigger asChild>
+                <button className="btn-sm text-gray-200 bg-[#1C4225] hover:bg-[#FFD646] hover:text-black w-full my-2 rounded-full px-6 py-3 transition-all duration-300 flex items-center justify-center gap-2">
+                  <span>Contact</span>
+                  <svg className="w-3 h-3 fill-current text-gray-200" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M11.707 5.293L7 .586 5.586 2l3 3H0v2h8.586l-3 3L7 11.414l4.707-4.707a1 1 0 000-1.414z" fillRule="nonzero" />
+                  </svg>
+                </button>
+              </AlertDialogTrigger>
+              <AlertDialogContent className="bg-white rounded-xl shadow-lg border-0 mx-4">
+                <AlertDialogHeader>
+                  <AlertDialogTitle className="text-2xl font-bold text-center text-[#1C4225]">Get in Touch</AlertDialogTitle>
+                  <AlertDialogDescription className="text-center text-gray-600">
+                    Choose your preferred way to connect with us
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter className="flex flex-col gap-3 mt-4">
+                  <Link 
+                    href="https://wa.me/818064228470" 
+                    className="bg-[#25D366] text-white py-3 px-6 rounded-full flex items-center justify-center gap-2 hover:bg-[#1ea952] transition-all duration-300 w-full"
+                  >
+                    <span>WhatsApp</span>
+                    <FaWhatsapp className="text-xl" />
+                  </Link>
+                  <Link 
+                    href="mailto:adamsatrio@tsbu.co.id" 
+                    className="bg-[#1C4225] text-white py-3 px-6 rounded-full flex items-center justify-center gap-2 hover:bg-[#153219] transition-all duration-300 w-full"
+                  >
+                    <span>Email</span>
+                    <MdMailOutline className="text-xl" />
+                  </Link>
+                  <AlertDialogCancel className="rounded-full border-2 hover:bg-gray-100 transition-all duration-300 w-full">
+                    Cancel
+                  </AlertDialogCancel>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
+
             </li>
           </ul>
         </Transition>
