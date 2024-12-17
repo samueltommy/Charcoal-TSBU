@@ -38,14 +38,13 @@ function Hero() {
 
                 <h1 className={`text-2xl md:text-4xl font-extrabold leading-tight mb-6 text-white ${inter.className}`}>
                     The Best For 
-                    <span className="text-[#FFD646]"> C</span>oconut
                     <span className="text-[#FFD646]"> B</span>riquettes,
                     <span className="text-[#FFD646]"> B</span>inchotan
                     <span className="text-[#FFD646]"> C</span>harcoal,
                     <span className="text-[#FFD646]"> W</span>ood 
-                    <span className="text-[#FFD646]"> P</span>allet, and
-                    <span className="text-[#FFD646]"> C</span>oconut
-                    <span className="text-[#FFD646]"> S</span>hell
+                    <span className="text-[#FFD646]"> P</span>ellets, and
+                    <span className="text-[#FFD646]"> P</span>alm
+                    <span className="text-[#FFD646]"> S</span>hells
                 </h1>
 
                 <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">

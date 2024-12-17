@@ -31,24 +31,23 @@ export default function Profile() {
                         className="w-full md:w-1/2 space-y-8"
                     >
                         <h2 className={`text-4xl md:text-5xl h2 leading-tight`}>
-                            Pure Charcoal, Premium Choice
+                            Manufacture and Trading Company
                         </h2>
 
                         <div className={`${inter.className} text-gray-600 space-y-6 text-lg`}>
                             <p>
-                                PT. Tani Solusi Berjaya Utama is a leading coconut briquetts, bichotan charcoal, wood pallet, 
-                                and coconut shell factory specializing in the production and export of high-quality products. 
-                                With extensive experience in crafting premium charcoal products, our factory is situated in 
-                                Grobogan, Central Java, Indonesia.
+                                PT. Tani Solusi Berjaya Utama specializes in the production and export of high-quality coconut 
+                                charcoal briquettes, crafted with extensive experience and a commitment to quality. The company 
+                                also engages in trading activities, focusing on partnerships with factories that produce sawdust 
+                                charcoal, wood pellets, binchotan charcoal, and palm shells. With years of experience in crafting 
+                                premium charcoal briquettes, our factory is located in Grobogan, Central Java, Indonesia.
                             </p>
                             <p>
-                                We offer four main products, coconut briquettes, bichontan charcoal, wood pallet, and coconut 
-                                shell, with the flexibility to meet various grades and custom requirements.
-                            </p>
-                            <p>
-                                Since our establishment in 2018, we've garnered vast experience and have had the privilege to
-                                export our premium charcoal products to esteemed markets including the USA, Middle East,
-                                Europe, and Brazil.
+                                We offer five main products: coconut briquettes, sawdust briquettes, binchotan charcoal, wood 
+                                pellets, and palm shells, with the flexibility to meet various grades and custom requirements. 
+                                Since our establishment in 2018, we have gained vast experience and had the privilege of exporting 
+                                our premium charcoal products to esteemed markets including the USA, the Middle East, Europe, and 
+                                Brazil.
                             </p>
                         </div>
 

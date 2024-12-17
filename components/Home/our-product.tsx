@@ -4,6 +4,11 @@ import cube from "@/public/shape/cube.svg";
 import finger from "@/public/shape/finger.svg";
 import flat from "@/public/shape/flat.svg";
 import hexagon from "@/public/shape/hexagon.svg";
+import briquettes from "@/public/img/briquettes.jpg";
+import bichotan from "@/public/img/bichotan.jpg";
+import pallet from "@/public/img/pallet.jpg";
+import palm from "@/public/img/palm.webp";
+import sawdust from "@/public/img/sawdust5.jpg";
 
 export default function OurProduct() {
     return(
@@ -27,27 +32,32 @@ export default function OurProduct() {
                 </div>
 
                 {/* Products Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-3">
                     {[
                         {
-                            icon: cube,
+                            icon: briquettes,
                             title: "Coconut Briquettes",
                             delay: "100"
                         },
                         {
-                            icon: flat,
-                            title: "Bichontan Charcoal",
+                            icon: bichotan,
+                            title: "Bichotan Charcoal",
                             delay: "200"
                         },
                         {
-                            icon: finger,
+                            icon: pallet,
                             title: "Wood Pallet",
                             delay: "300"
                         },
                         {
-                            icon: hexagon,
-                            title: "Coconut Shell",
+                            icon: palm,
+                            title: "Palm Shell",
                             delay: "400"
+                        },
+                        {
+                            icon: sawdust,
+                            title: "Sawdust Charcoal",
+                            delay: "500"
                         }
                     ].map((product, index) => (
                         <div
