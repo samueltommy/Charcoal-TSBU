@@ -92,7 +92,7 @@ const galleryItems: GalleryItem[] = [
 ];
 
 export default function Gallery() {
-    const [selectedCategory, setSelectedCategory] = useState<string>("factory");
+    const [selectedCategory, setSelectedCategory] = useState<string>("Factory");
     const [modalData, setModalData] = useState<GalleryItem | null>(null);
     const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
 
@@ -109,6 +109,34 @@ export default function Gallery() {
     const setImageIndex = (index: number) => setCurrentImageIndex(index);
 
     const filteredItems = galleryItems.filter((item) => item.category === selectedCategory);
+
+    const renderDescription = (description: string) => {
+        const parts = description.split('<br>');
+        return (
+            <div>
+                {parts.map((part, i) => (
+                    <p key={i} className="mb-2">
+                        {part.startsWith('- ') ? <li>{part.replace('- ', '')}</li> : part}
+                    </p>
+                ))}
+            </div>
+        );
+    };
+
+    const renderMedia = (src: string) => {
+        if (src.endsWith('.MP4')) {
+            return (
+                <video
+                    src={src}
+                    controls
+                    className="w-full h-auto object-contain"
+                >
+                    Your browser does not support the video tag.
+                </video>
+            );
+        }
+        return <img src={src} alt="media" className="w-full h-auto object-contain" />;
+    };
 
     return (
         <>
@@ -165,11 +193,7 @@ export default function Gallery() {
                     <div className="w-full max-w-6xl flex flex-col md:flex-row bg-white rounded-lg overflow-hidden">
                         {/* Image Section */}
                         <div className="relative w-full md:w-3/4">
-                            <img
-                                src={modalData.images[currentImageIndex]}
-                                alt={modalData.label}
-                                className="w-full h-full object-contain"
-                            />
+                            {renderMedia(modalData.images[currentImageIndex])}
 
                             {/* Navigation Arrows */}
                             <button
@@ -197,20 +221,30 @@ export default function Gallery() {
                         {/* Description Section */}
                         <div className="p-6 w-full md:w-1/4 bg-gray-100 flex flex-col justify-center">
                             <h2 className="text-2xl font-bold mb-4">{modalData.label}</h2>
-                            <p className="text-gray-600 mb-4">{modalData.description}</p>
+                            {renderDescription(modalData.description)}
 
                             {/* Thumbnails */}
                             <div className="flex flex-wrap gap-2 mt-4">
-                                {modalData.images.map((img, index) => (
-                                    <img
+                                {modalData.images.map((src, index) => (
+                                    <div
                                         key={index}
-                                        src={img}
-                                        alt={`Thumbnail ${index}`}
-                                        className={`w-16 h-16 object-cover rounded cursor-pointer border-2 ${
+                                        onClick={() => setCurrentImageIndex(index)}
+                                        className={`w-16 h-16 border ${
                                             currentImageIndex === index ? "border-blue-500" : "border-gray-300"
                                         }`}
-                                        onClick={() => setImageIndex(index)}
-                                    />
+                                    >
+                                        {src.endsWith('.MP4') ? (
+                                            <video
+                                                src={src}
+                                                className="w-full h-full object-cover"
+                                                muted
+                                                loop
+                                                playsInline
+                                            />
+                                        ) : (
+                                            <img src={src} alt={`thumbnail-${index}`} className="w-full h-full object-cover" />
+                                        )}
+                                    </div>
                                 ))}
                             </div>
                         </div>
