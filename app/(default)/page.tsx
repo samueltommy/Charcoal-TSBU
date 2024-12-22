@@ -41,7 +41,7 @@ export default function Home() {
         <main className="flex min-h-screen flex-col items-center justify-between pt-20">
             <Hero/>
             <Profile/>
-            <OurProduct/>
+            {/*<OurProduct/>*/}
             {/*<AdvantageProduct/>*/}
             {/*<OurTeam/>*/}
             <OurHighlight/>
