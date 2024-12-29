@@ -26,7 +26,7 @@ export default function OurHighlight() {
                                 videoWidth={1920}
                                 videoHeight={1080}
                                 className="w-full h-full object-cover"
-                                videoUrl="https://drive.google.com/file/d/1rM5cYtDXWyun9UXw7PJ-4hBxdXqRrKPf/view"
+                                videoSrc="https://drive.google.com/file/d/1DeChHIFq2iOZZZZ1HNP_orUNDTBWvMha/view"
                             />
                         </div>
                     </div>
