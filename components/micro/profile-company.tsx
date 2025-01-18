@@ -1,46 +1,32 @@
 import Image from "next/image";
-import Backround from "@/public/img/Shipping1.webp"
-import {Separator} from "@/components/ui/separator";
-import Logo from "@/components/ui/logo";
-export default function ProfileCompany(
-    props:
-        {text:string}
-) {
-    return(
-        <>
-            <div className="grid xl:grid-cols-2 content-center">
-                <div className="">
-                    <Image
-                        className=" relative z-[-1]"
-                        src="./shape/dot-for.svg"
-                        height={300}
-                        width={300}
-                        alt={"wow"}/>
+import backgroundImage from "@/public/img/Shipping1.webp"; // Replace with the actual image path
 
-                    <div
-                        className="mt-[-12rem] ml-24 gap-4 border border-white border-4 flex flex-col w-[12rem] pt-[3rem] bg-[#FFD646] text-center  text-white">
-                        <h1 className="text-6xl font-bold">
-                            2018
-                        </h1>
-                        <h5 className="h5 pb-4">
-                            Established
-                        </h5>
-                    </div>
-                    <img
-                        src={Backround.src}
-                        alt="No image"
-                        className="relative object-cover top-[-4rem] right-[-1.5rem] md:top-[-16rem] md:left-[12rem] z-[-1]
-                        max-w-[20rem] md:max-w-[28rem] md:min-h-[24rem]"
-                        />
-                </div>
-                <div className="mx-14 xl:mr-24">
-                    <Logo className="w-24 h-24 my-10 m-auto"/>
-                    <Separator className="mb-4"/>
-                    <div className="w-full text-md text-justify text-gray-600">
-                        <div dangerouslySetInnerHTML={{__html: props.text}}/>
-                    </div>
-                </div>
-            </div>
-        </>
-    )
+export default function ProfileCompany({ text }: { text: string }) {
+  return (
+    <section className="py-16 bg-gray-50">
+      <div className="max-w-7xl mx-auto grid lg:grid-cols-2 items-center gap-8 px-6 sm:px-8">
+        {/* Left Section: Text */}
+        <div>
+          <h2 className="text-xl font-semibold text-gray-800 mb-4">About Us</h2>
+          <h1 className="text-5xl font-bold text-orange-600 mb-6">PT. Tani Solusi Berjaya Utama</h1>
+          <p className="text-lg text-gray-600 mb-4">
+            Discover Our Diverse Charcoal Briquette Selection:
+          </p>
+          <div className="text-gray-700 text-md leading-relaxed text-justify">
+            <div dangerouslySetInnerHTML={{ __html: text }} />
+          </div>
+        </div>
+
+        {/* Right Section: Image */}
+        <div className="flex justify-center">
+          <Image
+            src={backgroundImage}
+            alt="Family running up stairs"
+            className="rounded-lg shadow-lg object-cover w-full max-w-md lg:max-w-lg transform scale-x-[-1]"
+            priority
+          />
+        </div>
+      </div>
+    </section>
+  );
 }
