@@ -150,6 +150,8 @@ export default function Gallery() {
     return (
         <>
             <Header active={"gallery"} />
+            <BackgroundGhost />
+            
 
             {/* Gallery Hero Section */}
             <div className="relative text-black mt-8 py-16">

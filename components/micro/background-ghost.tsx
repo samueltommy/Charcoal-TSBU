@@ -1,39 +1,36 @@
 'use client'
-import Image, {StaticImageData} from "next/image";
-import {usePathname} from "next/navigation"
+import Image from "next/image";
+import { usePathname } from "next/navigation";
 
-import bg1 from "@/public/img/bg1.webp"
-import bg2 from "@/public/img/bg2.webp"
-import bg3 from "@/public/img/bg3.webp"
-const bgImage:StaticImageData[] = [
-    bg1,
-    bg2,
-    bg3
-]
+import bg1 from "@/public/img/bg1.webp";
+import bg2 from "@/public/img/bg2.webp";
+import bg3 from "@/public/img/bg3.webp";
+
+const bgImages = [bg1, bg2, bg3];
+
 export default function BackgroundGhost() {
-    const pathname = usePathname()
-    return(
-        <>
-            <img
-                src={bgImage[Math.floor(Math.random() * (bgImage.length))].src}
-                alt="Hero Login Image"
-                className={`absolute max-h-[100vh] md:max-h-[70vh] object fill min-w-full z-[-1] object-cover `}
-                sizes="{(max-width: 768px) 768px, (max-width: 1440px) 1440px, 100vw}"
+    const pathname = usePathname();
+    const backgroundImage = bgImages[Math.floor(Math.random() * bgImages.length)];
+
+    return (
+        <div className="relative w-full h-[50vh] md:h-[70vh] flex items-center justify-center bg-gray-900/50">
+            <Image 
+                src={backgroundImage} 
+                alt="Background Image" 
+                layout="fill" 
+                objectFit="cover" 
+                className="absolute inset-0 z-[-1] opacity-85" 
+                priority
+                quality={70}
             />
-            {/*<Image*/}
-            {/*    src={bgImage[Math.floor(Math.random() * (bgImage.length))]}*/}
-            {/*    alt="Hero Image"*/}
-            {/*    fill*/}
-            {/*    className="object-cover max-h-[22rem] md:max-h-[32rem] z-[-1]"*/}
-            {/*    sizes="{(max-width: 768px) 768px, (max-width: 1440px) 1440px, 100vw} "*/}
-            {/*    priority={true}*/}
-            {/*    placeholder="blur"*/}
-            {/*    quality={50}*/}
-            {/*/>*/}
-            <div className="flex my-[5rem] md:my-[15rem] gap-2 flex-col items-center">
-                <h1 className="h1  text-white "> {pathname.slice(1, 2).toUpperCase() + pathname.slice(2)}</h1>
-                <h1 className="h4  text-white"><a href="/">Home</a> &gt; {pathname.slice(1)} </h1>
+            <div className="text-center">
+                <h1 className="text-4xl md:text-5xl font-bold text-white capitalize">
+                    {pathname === "/" ? "Home" : pathname.slice(1).replace(/-/g, ' ')}
+                </h1>
+                <p className="text-xl text-gray-300 mt-2">
+                    <a href="/" className="text-gray-200 hover:underline">Home</a> &gt; {pathname.slice(1).replace(/-/g, ' ')}
+                </p>
             </div>
-        </>
-    )
+        </div>
+    );
 }
