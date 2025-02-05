@@ -3,6 +3,8 @@ import { useState } from "react";
 import Header from "@/components/ui/header";
 import BackgroundGhost from "@/components/micro/background-ghost";
 import Footer from "@/components/micro/footer";
+import * as ToggleGroup from "@radix-ui/react-toggle-group";
+
 
 interface GalleryItem {
     label: string;
@@ -15,7 +17,7 @@ const galleryItems: GalleryItem[] = [
         label: "Factory Front View", 
         description: "Here is the front view of the charcoal factory, showcasing a corrugated metal roof, green and gray painted walls.",
         category: "Factory",
-        images: ["/img/Factory2.webp", "/img/DSCF3069.JPG", "/img/DSCF3052.JPG"]
+        images: ["/img/Factory2.webp", "/img/DSCF3052.JPG"]
     },
     { 
         label: "Factory Inside View", 
@@ -95,6 +97,8 @@ export default function Gallery() {
     const [selectedCategory, setSelectedCategory] = useState<string>("Factory");
     const [modalData, setModalData] = useState<GalleryItem | null>(null);
     const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
+    const [imageLoaded, setImageLoaded] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     const openModal = (item: GalleryItem) => {
         setModalData(item);
@@ -123,7 +127,9 @@ export default function Gallery() {
         );
     };
 
-    const renderMedia = (src: string) => {
+    const renderMedia = (src: string | undefined) => {
+        if (!src) return null;
+        
         if (src.endsWith('.MP4')) {
             return (
                 <video
@@ -138,114 +144,188 @@ export default function Gallery() {
         return <img src={src} alt="media" className="w-full h-auto object-contain" />;
     };
 
+    const toggleGroupItemClasses = 
+        "px-6 py-3 flex items-center justify-center bg-white text-gray-600 first:rounded-l last:rounded-r hover:bg-gray-50 focus:z-10 focus:shadow-[0_0_0_2px] focus:shadow-blue-500 focus:outline-none data-[state=on]:bg-blue-500 data-[state=on]:text-white transition-all duration-200";
+
     return (
         <>
             <Header active={"gallery"} />
-            <BackgroundGhost />
 
-            {/* Category Buttons */}
-            <div className="w-full flex justify-center mt-12 gap-6">
-                {["Factory", "Charcoal", "Working Environment"].map((category) => (
-                    <button
-                        key={category}
-                        className={`px-4 py-2 rounded ${
-                            selectedCategory === category ? "bg-blue-500 text-white" : "bg-gray-200"
-                        }`}
-                        onClick={() => setSelectedCategory(category)}
-                    >
-                        {category.charAt(0).toUpperCase() + category.slice(1)}
-                    </button>
-                ))}
+            {/* Gallery Hero Section */}
+            <div className="relative text-black mt-8 py-16">
+                <div className="container mx-auto px-4">
+                    <h1 className="text-5xl h1 mb-6 text-center">Our Gallery</h1>
+                    <p className="text-xl text-gray-500 text-center max-w-3xl mx-auto leading-relaxed">
+                        Explore our collection of high-quality charcoal products and get a glimpse into our modern production facility
+                    </p>
+                </div>
+                <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-white to-transparent"></div>
             </div>
 
-            {/* Gallery Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-12 p-4">
-                {filteredItems.map((item, index) => (
-                    <div
-                        key={index}
-                        className="relative group cursor-pointer"
-                        onClick={() => openModal(item)}
+            {/* Modern Category Navigation */}
+            <div className="container mx-auto px-4 mb-16">
+                <div className="flex justify-center space-x-8 border-b border-gray-200">
+                    <ToggleGroup.Root
+                        className="inline-flex rounded-lg shadow-md bg-gray-100 mb-12"
+                        type="single"
+                        defaultValue="Factory"
+                        value={selectedCategory}
+                        onValueChange={(value) => {
+                            if (value) {
+                                setIsLoading(true);
+                                setSelectedCategory(value);
+                                setTimeout(() => setIsLoading(false), 500);
+                            }
+                        }}                        
+                        aria-label="Category selection"
                     >
-                        <img
-                            src={item.images[0]} // First image preview
-                            alt={item.label}
-                            className="object-cover w-full h-60 rounded-md transition-transform transform group-hover:scale-105"
-                        />
-                        <div className="text-center mt-2 font-semibold text-gray-700 group-hover:text-blue-500">
-                            {item.label}
+                        {["Factory", "Charcoal", "Working Environment"].map((category) => (
+                            <ToggleGroup.Item
+                                key={category}
+                                className={toggleGroupItemClasses}
+                                value={category}
+                                aria-label={`${category} category`}
+                            >
+                                {category}
+                            </ToggleGroup.Item>
+                        ))}
+                    </ToggleGroup.Root>
+                </div>
+
+                {/* Modern Masonry-style Grid */}
+                <div className="relative mt-12">
+                    {isLoading && (
+                        <div className="absolute inset-0 flex items-center justify-center bg-white z-10">
+                            <div className="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
                         </div>
+                    )}
+                    <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 transition-opacity duration-300 ${isLoading ? 'opacity-0' : 'opacity-100'}`}>
+                        {filteredItems.map((item, index) => (
+                            <div 
+                                key={index} 
+                                className="group transform transition-all duration-300 hover:translate-y-[-4px]"
+                            >
+                                <div 
+                                    className="cursor-pointer overflow-hidden rounded-xl shadow-lg aspect-[4/3] mb-4"
+                                    onClick={() => setModalData(item)}
+                                >
+                                    <img
+                                        src={item.images[0]}
+                                        alt={item.label}
+                                        className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105"
+                                    />
+                                </div>
+                                <h3 className="text-lg font-medium text-gray-800 text-center group-hover:text-blue-600 transition-colors duration-300">
+                                    {item.label}
+                                </h3>
+                            </div>
+                        ))}
                     </div>
-                ))}
+                </div>
             </div>
 
             {/* Full-Screen Modal */}
             {modalData && (
-                <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-90 flex items-center justify-center z-50">
-                    {/* Close Button */}
-                    <button
-                        className="absolute top-4 right-4 text-white text-4xl font-bold z-10"
-                        onClick={closeModal}
-                    >
-                        &times;
-                    </button>
-
-                    {/* Modal Content */}
-                    <div className="w-full max-w-6xl flex flex-col md:flex-row bg-white rounded-lg overflow-hidden">
-                        {/* Image Section */}
-                        <div className="relative w-full md:w-3/4">
-                            {renderMedia(modalData.images[currentImageIndex])}
-
-                            {/* Navigation Arrows */}
+                <div className="fixed inset-0 bg-white z-50 overflow-hidden">
+                    <div className="h-full flex flex-col">
+                        {/* Modal Header */}
+                        <div className="px-12 py-6 border-b flex items-center justify-between">
+                            <h2 className="text-2xl font-bold text-gray-900">{modalData.label}</h2>
                             <button
-                                className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-gray-800 bg-opacity-50 text-white p-2 rounded-full hover:bg-gray-600"
-                                onClick={() =>
-                                    setCurrentImageIndex((prevIndex) =>
-                                        (prevIndex - 1 + modalData.images.length) % modalData.images.length
-                                    )
-                                }
+                                onClick={() => setModalData(null)}
+                                className="p-2 hover:bg-gray-100 rounded-full transition-colors"
                             >
-                                &#8592;
-                            </button>
-                            <button
-                                className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-gray-800 bg-opacity-50 text-white p-2 rounded-full hover:bg-gray-600"
-                                onClick={() =>
-                                    setCurrentImageIndex((prevIndex) =>
-                                        (prevIndex + 1) % modalData.images.length
-                                    )
-                                }
-                            >
-                                &#8594;
+                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                </svg>
                             </button>
                         </div>
 
-                        {/* Description Section */}
-                        <div className="p-6 w-full md:w-1/4 bg-gray-100 flex flex-col justify-center">
-                            <h2 className="text-2xl font-bold mb-4">{modalData.label}</h2>
-                            {renderDescription(modalData.description)}
-
-                            {/* Thumbnails */}
-                            <div className="flex flex-wrap gap-2 mt-4">
-                                {modalData.images.map((src, index) => (
-                                    <div
-                                        key={index}
-                                        onClick={() => setCurrentImageIndex(index)}
-                                        className={`w-16 h-16 border ${
-                                            currentImageIndex === index ? "border-blue-500" : "border-gray-300"
-                                        }`}
-                                    >
-                                        {src.endsWith('.MP4') ? (
-                                            <video
-                                                src={src}
-                                                className="w-full h-full object-cover"
-                                                muted
-                                                loop
-                                                playsInline
+                        {/* Modal Content */}
+                        <div className="flex-1 flex">
+                            {/* Main Image/Video Section */}
+                            <div className="flex-1 bg-gray-50 flex items-center justify-center p-12">
+                                <div className="relative w-full h-full max-h-[85vh] flex items-center justify-center">
+                                    {modalData.images[currentImageIndex] && (
+                                        modalData.images[currentImageIndex].endsWith('.MP4') ? (
+                                            <video 
+                                                src={modalData.images[currentImageIndex]} 
+                                                controls
+                                                className="max-w-full max-h-full w-auto h-auto object-contain"
                                             />
                                         ) : (
-                                            <img src={src} alt={`thumbnail-${index}`} className="w-full h-full object-cover" />
-                                        )}
+                                            <>
+                                                {!imageLoaded && (
+                                                    <div className="absolute inset-0 flex items-center justify-center">
+                                                        <div className="w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+                                                    </div>
+                                                )}
+                                                <img
+                                                    src={modalData.images[currentImageIndex]}
+                                                    alt={modalData.label}
+                                                    className={`max-w-full max-h-full w-auto h-auto object-contain transition-opacity duration-300 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
+                                                    onLoad={() => setImageLoaded(true)}
+                                                />
+                                            </>
+                                        )
+                                    )}
+
+                                    {/* Navigation Arrows */}
+                                    {modalData.images.length > 1 && (
+                                        <>
+                                            <button
+                                                className="absolute left-4 p-3 rounded-full bg-white shadow-lg hover:bg-gray-100 transition-colors"
+                                                onClick={() => setCurrentImageIndex((prev) => 
+                                                    (prev - 1 + modalData.images.length) % modalData.images.length
+                                                )}
+                                            >
+                                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                                                </svg>
+                                            </button>
+                                            <button
+                                                className="absolute right-4 p-3 rounded-full bg-white shadow-lg hover:bg-gray-100 transition-colors"
+                                                onClick={() => setCurrentImageIndex((prev) => 
+                                                    (prev + 1) % modalData.images.length
+                                                )}
+                                            >
+                                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                                </svg>
+                                            </button>
+                                        </>
+                                    )}
+                                </div>
+                            </div>
+
+                            {/* Sidebar */}
+                            <div className="w-[400px] border-l p-8 overflow-y-auto">
+                                <div className="mb-8">
+                                    <h3 className="text-lg font-semibold mb-4">Description</h3>
+                                    <p className="text-gray-600 leading-relaxed">{modalData.description}</p>
+                                </div>
+
+                                {/* Thumbnails */}
+                                <div className="space-y-4">
+                                    <h3 className="text-lg font-semibold mb-4">Gallery</h3>
+                                    <div className="grid grid-cols-3 gap-3">
+                                        {modalData.images.map((src, idx) => (
+                                            <button
+                                                key={idx}
+                                                onClick={() => setCurrentImageIndex(idx)}
+                                                className={`aspect-square rounded-lg overflow-hidden ${
+                                                    currentImageIndex === idx ? 'ring-2 ring-blue-500' : ''
+                                                }`}
+                                            >
+                                                {src.endsWith('.MP4') ? (
+                                                    <video src={src} className="w-full h-full object-cover" />
+                                                ) : (
+                                                    <img src={src} alt="" className="w-full h-full object-cover" />
+                                                )}
+                                            </button>
+                                        ))}
                                     </div>
-                                ))}
+                                </div>
                             </div>
                         </div>
                     </div>
