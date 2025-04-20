@@ -58,31 +58,31 @@ const galleryItems: GalleryItem[] = [
     { 
         label: "BBQ Coconut Briquttes", 
         description: "BBQ coconut briquettes are eco-friendly, high-performance charcoal made from compressed coconut shells. Designed for grilling, they provide a long-lasting, consistent heat with minimal smoke and ash. Free from additives or chemicals, these briquettes ensure a clean burn, preserving the natural flavors of food while being an environmentally responsible choice for barbecue enthusiasts.",
-        category: "Charcoal",
+        category: "Our Products",
         images: ["/img/BC1.JPG", "/img/BC2.JPG"]
     },
     { 
         label: "Coconut Shell Charcoal", 
         description: "Coconut shell charcoal is a sustainable, natural product made by carbonizing dried coconut shells. Renowned for its eco-friendly production, it burns cleanly with minimal smoke and ash. Commonly used in grilling, shisha, and industrial applications, it provides long-lasting, consistent heat and is free from harmful chemicals, making it a versatile and environmentally conscious choice.",
-        category: "Charcoal",
+        category: "Our Products",
         images: ["/img/DSCF3032.JPG", "/img/DSCF3027.JPG"]
     },
     { 
         label: "Shisha Coconut Briquettes", 
         description: "Shisha coconut briquettes are eco-friendly, high-quality charcoal made from compressed coconut shells. They are specifically designed for use in shisha or hookah, offering a clean and consistent burn with minimal ash and no harmful chemicals. Known for their long burn time and even heat distribution, these briquettes enhance the shisha experience by delivering pure flavor without overpowering smoke.",
-        category: "Charcoal",
+        category: "Our Products",
         images: ["/img/DSCF2897.JPG", "/img/DSCF2624.JPG", "/img/DSCF2898.JPG", "/img/DSCF2943.JPG"]
     },
     { 
         label: "BBQ Sawdust Briquettes", 
         description: "BBQ sawdust briquettes are eco-friendly charcoal made by compressing recycled sawdust into dense, high-performance blocks. Ideal for grilling, they offer consistent heat, a long burn time, and minimal smoke. Free from harmful chemicals, these briquettes ensure a clean and natural cooking experience while promoting sustainable waste utilization.",
-        category: "Charcoal",
+        category: "Our Products",
         images: ["/img/sawdust4.JPG", "/img/BS1.webp", "/img/BCVID.mp4"]
     },
     { 
         label: "Binchotan Charcoal", 
         description: "Binchotan charcoal, also known as white charcoal, is a high-quality, traditional Japanese charcoal made from hardwoods like oak. Renowned for its clean burn, high heat, and ability to enhance flavors, it is widely used in grilling. The wood is heated in a kiln at a low temperature (around 200–400°C) for several days to remove moisture and impurities. In the final stage, the temperature is rapidly increased to approximately 900°C before the charcoal is removed and quickly cooled using sand or ash. This high-temperature exposure creates a hard, white outer layer, giving Binchotan its unique structure, clean-burning properties, and long-lasting qualities.",
-        category: "Charcoal",
+        category: "Our Products",
         images: ["/img/produk1.JPG", "/img/produk2.JPG", "/img/video_binchotan.MP4", "/img/video_binchotan2.MP4"]
     },
     { 
@@ -150,8 +150,6 @@ export default function Gallery() {
     return (
         <>
             <Header active={"gallery"} />
-            <BackgroundGhost />
-            
 
             {/* Gallery Hero Section */}
             <div className="relative text-black mt-8 py-16">
@@ -181,7 +179,7 @@ export default function Gallery() {
                         }}                        
                         aria-label="Category selection"
                     >
-                        {["Factory", "Charcoal", "Working Environment"].map((category) => (
+                        {["Factory", "Our Products", "Working Environment"].map((category) => (
                             <ToggleGroup.Item
                                 key={category}
                                 className={toggleGroupItemClasses}
@@ -208,13 +206,13 @@ export default function Gallery() {
                                 className="group transform transition-all duration-300 hover:translate-y-[-4px]"
                             >
                                 <div 
-                                    className="cursor-pointer overflow-hidden rounded-xl shadow-lg aspect-[4/3] mb-4"
+                                    className="cursor-pointer overflow-hidden rounded-xl shadow-lg aspect-[4/3] mb-4 relative h-[300px]"
                                     onClick={() => setModalData(item)}
                                 >
                                     <img
                                         src={item.images[0]}
                                         alt={item.label}
-                                        className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105"
+                                        className="absolute w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105"
                                     />
                                 </div>
                                 <h3 className="text-lg font-medium text-gray-800 text-center group-hover:text-blue-600 transition-colors duration-300">
@@ -226,106 +224,139 @@ export default function Gallery() {
                 </div>
             </div>
 
-            {/* Full-Screen Modal */}
+            {/* Modal */}
             {modalData && (
-                <div className="fixed inset-0 bg-white z-50 overflow-hidden">
-                    <div className="h-full flex flex-col">
-                        {/* Modal Header */}
-                        <div className="px-12 py-6 border-b flex items-center justify-between">
-                            <h2 className="text-2xl font-bold text-gray-900">{modalData.label}</h2>
-                            <button
-                                onClick={() => setModalData(null)}
-                                className="p-2 hover:bg-gray-100 rounded-full transition-colors"
-                            >
-                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                                </svg>
-                            </button>
-                        </div>
-
-                        {/* Modal Content */}
-                        <div className="flex-1 flex">
-                            {/* Main Image/Video Section */}
-                            <div className="flex-1 bg-gray-50 flex items-center justify-center p-12">
-                                <div className="relative w-full h-full max-h-[85vh] flex items-center justify-center">
-                                    {modalData.images[currentImageIndex] && (
-                                        modalData.images[currentImageIndex].endsWith('.MP4') ? (
-                                            <video 
-                                                src={modalData.images[currentImageIndex]} 
-                                                controls
-                                                className="max-w-full max-h-full w-auto h-auto object-contain"
-                                            />
-                                        ) : (
-                                            <>
-                                                {!imageLoaded && (
-                                                    <div className="absolute inset-0 flex items-center justify-center">
-                                                        <div className="w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
-                                                    </div>
-                                                )}
-                                                <img
-                                                    src={modalData.images[currentImageIndex]}
-                                                    alt={modalData.label}
-                                                    className={`max-w-full max-h-full w-auto h-auto object-contain transition-opacity duration-300 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
-                                                    onLoad={() => setImageLoaded(true)}
-                                                />
-                                            </>
-                                        )
-                                    )}
-
-                                    {/* Navigation Arrows */}
-                                    {modalData.images.length > 1 && (
-                                        <>
-                                            <button
-                                                className="absolute left-4 p-3 rounded-full bg-white shadow-lg hover:bg-gray-100 transition-colors"
-                                                onClick={() => setCurrentImageIndex((prev) => 
-                                                    (prev - 1 + modalData.images.length) % modalData.images.length
-                                                )}
-                                            >
-                                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                                                </svg>
-                                            </button>
-                                            <button
-                                                className="absolute right-4 p-3 rounded-full bg-white shadow-lg hover:bg-gray-100 transition-colors"
-                                                onClick={() => setCurrentImageIndex((prev) => 
-                                                    (prev + 1) % modalData.images.length
-                                                )}
-                                            >
-                                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                                </svg>
-                                            </button>
-                                        </>
-                                    )}
-                                </div>
+                <div className="fixed inset-0 bg-black/50 z-50 p-2 sm:p-4 overflow-hidden flex items-center justify-center">
+                    <div className="bg-white rounded-xl w-[98%] sm:w-[95%] max-w-[1200px] h-[95vh] sm:h-[90vh] overflow-hidden shadow-2xl">
+                        <div className="flex flex-col h-full">
+                            {/* Modal Header */}
+                            <div className="px-4 sm:px-6 py-3 sm:py-4 border-b flex items-center justify-between shrink-0">
+                                <h2 className="text-lg sm:text-xl font-bold text-gray-900 truncate pr-4">{modalData.label}</h2>
+                                <button
+                                    onClick={() => {
+                                        setModalData(null);
+                                        setImageLoaded(false);
+                                    }}
+                                    className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+                                >
+                                    <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                    </svg>
+                                </button>
                             </div>
 
-                            {/* Sidebar */}
-                            <div className="w-[400px] border-l p-8 overflow-y-auto">
-                                <div className="mb-8">
-                                    <h3 className="text-lg font-semibold mb-4">Description</h3>
-                                    <p className="text-gray-600 leading-relaxed">{modalData.description}</p>
+                            {/* Modal Content */}
+                            <div className="flex flex-col md:flex-row flex-1 min-h-0">
+                                {/* Main Image/Video Section */}
+                                <div className="flex-1 bg-gray-50 p-3 sm:p-4 md:p-6 min-h-0">
+                                    <div className="relative w-full h-full flex items-center justify-center bg-gray-100 rounded-lg">
+                                        <div className="relative w-[85%] h-[85%] flex items-center justify-center">
+                                            {modalData.images[currentImageIndex] && (
+                                                modalData.images[currentImageIndex].endsWith('.MP4') ? (
+                                                    <video 
+                                                        src={modalData.images[currentImageIndex]} 
+                                                        controls
+                                                        className="w-auto h-auto max-w-full max-h-[40vh] md:max-h-[45vh] object-contain rounded-md mx-auto"
+                                                    />
+                                                ) : (
+                                                    <>
+                                                        {!imageLoaded && (
+                                                            <div className="absolute inset-0 flex items-center justify-center">
+                                                                <div className="w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+                                                            </div>
+                                                        )}
+                                                        <img
+                                                            src={modalData.images[currentImageIndex]}
+                                                            alt={modalData.label}
+                                                            className={`w-auto h-auto max-w-full max-h-[40vh] md:max-h-[45vh] object-contain rounded-md shadow-sm transition-opacity duration-300 mx-auto ${
+                                                                imageLoaded ? 'opacity-100' : 'opacity-0'
+                                                            }`}
+                                                            onLoad={() => setImageLoaded(true)}
+                                                        />
+                                                    </>
+                                                )
+                                            )}
+
+                                            {/* Navigation Arrows */}
+                                            {modalData.images.length > 1 && (
+                                                <>
+                                                    <button
+                                                        className="absolute left-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/90 shadow-lg hover:bg-white transition-colors"
+                                                        onClick={() => {
+                                                            setImageLoaded(false);
+                                                            setCurrentImageIndex((prev) => 
+                                                                (prev - 1 + modalData.images.length) % modalData.images.length
+                                                            );
+                                                        }}
+                                                    >
+                                                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                                                        </svg>
+                                                    </button>
+                                                    <button
+                                                        className="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/90 shadow-lg hover:bg-white transition-colors"
+                                                        onClick={() => {
+                                                            setImageLoaded(false);
+                                                            setCurrentImageIndex((prev) => 
+                                                                (prev + 1) % modalData.images.length
+                                                            );
+                                                        }}
+                                                    >
+                                                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                                        </svg>
+                                                    </button>
+                                                </>
+                                            )}
+                                        </div>
+                                    </div>
                                 </div>
 
-                                {/* Thumbnails */}
-                                <div className="space-y-4">
-                                    <h3 className="text-lg font-semibold mb-4">Gallery</h3>
-                                    <div className="grid grid-cols-3 gap-3">
-                                        {modalData.images.map((src, idx) => (
-                                            <button
-                                                key={idx}
-                                                onClick={() => setCurrentImageIndex(idx)}
-                                                className={`aspect-square rounded-lg overflow-hidden ${
-                                                    currentImageIndex === idx ? 'ring-2 ring-blue-500' : ''
-                                                }`}
-                                            >
-                                                {src.endsWith('.MP4') ? (
-                                                    <video src={src} className="w-full h-full object-cover" />
-                                                ) : (
-                                                    <img src={src} alt="" className="w-full h-full object-cover" />
-                                                )}
-                                            </button>
-                                        ))}
+                                {/* Sidebar */}
+                                <div className="w-full md:w-[400px] border-t md:border-t-0 md:border-l flex flex-col h-[40vh] md:h-full">
+                                    <div className="flex flex-col h-full overflow-hidden">
+                                        <div className="p-4 sm:p-6 overflow-y-auto">
+                                            <div className="mb-6 text-center md:text-left">
+                                                <h3 className="text-sm font-semibold text-gray-900 mb-2">Description</h3>
+                                                <p className="text-sm text-gray-600 leading-relaxed">{modalData.description}</p>
+                                            </div>
+
+                                            {/* Thumbnails */}
+                                            <div className="text-center md:text-left">
+                                                <h3 className="text-sm font-semibold text-gray-900 mb-2">Gallery</h3>
+                                                <div className="grid grid-cols-4 sm:grid-cols-3 gap-2 max-w-[400px] mx-auto md:mx-0">
+                                                    {modalData.images.map((src, idx) => (
+                                                        <button
+                                                            key={idx}
+                                                            onClick={() => {
+                                                                setImageLoaded(false);
+                                                                setCurrentImageIndex(idx);
+                                                            }}
+                                                            className={`aspect-square rounded-md overflow-hidden ${
+                                                                currentImageIndex === idx ? 'ring-2 ring-blue-500' : ''
+                                                            }`}
+                                                        >
+                                                            {src.endsWith('.MP4') ? (
+                                                                <div className="w-full h-full bg-gray-100 flex items-center justify-center">
+                                                                    <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                                    </svg>
+                                                                </div>
+                                                            ) : (
+                                                                <div className="w-full h-full relative">
+                                                                    <img 
+                                                                        src={src} 
+                                                                        alt="" 
+                                                                        className="absolute inset-0 w-full h-full object-cover hover:opacity-90 transition-opacity" 
+                                                                    />
+                                                                </div>
+                                                            )}
+                                                        </button>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

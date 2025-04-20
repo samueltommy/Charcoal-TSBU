@@ -72,10 +72,12 @@ export default function OurProduct() {
         return <div className="text-gray-600 leading-relaxed" dangerouslySetInnerHTML={{ __html: description }} />;
     };
 
+    const toggleGroupItemClasses = 
+        "px-8 py-4 flex items-center justify-center text-sm font-medium tracking-wide bg-white text-gray-600 first:rounded-l-xl last:rounded-r-xl hover:bg-gray-50 focus:z-10 focus:outline-none data-[state=on]:bg-blue-500 data-[state=on]:text-white data-[state=on]:shadow-lg transition-all duration-200 transform hover:scale-105 active:scale-95";
+
     return (
         <>
             <Header active={"our-product"} />
-            <BackgroundGhost />
             <div className="relative text-black mt-8 py-16">
                 <div className="container mx-auto px-4">
                     <h1 className="text-5xl h1 mb-6 text-center">Our Products</h1>
@@ -87,32 +89,34 @@ export default function OurProduct() {
 
             {/* Category Buttons */}
             <div className="container mx-auto px-4 mb-16">
-                <div className="flex justify-center space-x-8 border-b border-gray-200">
-                    <ToggleGroup.Root
-                        className="inline-flex rounded-lg shadow-md bg-gray-100 mb-12"
-                        type="single"
-                        defaultValue="Briquettes"
-                        value={selectedCategory}
-                        onValueChange={(value) => {
-                            if (value) {
-                                setIsLoading(true);
-                                setSelectedCategory(value);
-                                setTimeout(() => setIsLoading(false), 500);
-                            }
-                        }}
-                        aria-label="Category selection"
-                    >
-                        {["Briquettes", "Hardwood Charcoal", "Others"].map((category) => (
-                            <ToggleGroup.Item
-                                key={category}
-                                className="px-6 py-3 flex items-center justify-center bg-white text-gray-600 first:rounded-l last:rounded-r hover:bg-gray-50 focus:z-10 focus:shadow-[0_0_0_2px] focus:shadow-blue-500 focus:outline-none data-[state=on]:bg-blue-500 data-[state=on]:text-white transition-all duration-200"
-                                value={category}
-                                aria-label={`${category} category`}
-                            >
-                                {category}
-                            </ToggleGroup.Item>
-                        ))}
-                    </ToggleGroup.Root>
+                <div className="flex justify-center">
+                    <div className="bg-gray-100/50 p-1.5 rounded-xl shadow-lg backdrop-blur-sm overflow-x-auto max-w-full">
+                        <ToggleGroup.Root
+                            className="inline-flex rounded-xl bg-white/80 shadow-sm"
+                            type="single"
+                            defaultValue="Briquettes"
+                            value={selectedCategory}
+                            onValueChange={(value) => {
+                                if (value) {
+                                    setIsLoading(true);
+                                    setSelectedCategory(value);
+                                    setTimeout(() => setIsLoading(false), 500);
+                                }
+                            }}
+                            aria-label="Category selection"
+                        >
+                            {["Briquettes", "Hardwood Charcoal", "Others"].map((category) => (
+                                <ToggleGroup.Item
+                                    key={category}
+                                    className={toggleGroupItemClasses}
+                                    value={category}
+                                    aria-label={`${category} category`}
+                                >
+                                    {category}
+                                </ToggleGroup.Item>
+                            ))}
+                        </ToggleGroup.Root>
+                    </div>
                 </div>
             </div>
 
@@ -150,14 +154,18 @@ export default function OurProduct() {
             </div>
 
             {/* Full-Screen Modal */}
-            <div className="container mx-auto px-4 mb-16">
-                {modalData && (
-                    <div className="fixed inset-0 bg-white z-50 overflow-hidden">
-                        <div className="h-full flex flex-col">
-                            <div className="px-12 py-6 border-b flex items-center justify-between">
-                                <h2 className="text-2xl font-bold text-gray-900">{modalData.label}</h2>
+            {modalData && (
+                <div className="fixed inset-0 bg-black/50 z-50 p-4 overflow-hidden flex items-center justify-center">
+                    <div className="bg-white rounded-xl w-[95%] max-w-[1200px] h-[90vh] overflow-hidden shadow-2xl">
+                        <div className="flex flex-col h-full">
+                            {/* Modal Header */}
+                            <div className="px-6 py-4 border-b flex items-center justify-between shrink-0">
+                                <h2 className="text-xl font-bold text-gray-900">{modalData.label}</h2>
                                 <button
-                                    onClick={() => setModalData(null)}
+                                    onClick={() => {
+                                        setModalData(null);
+                                        setImageLoaded(false);
+                                    }}
                                     className="p-2 hover:bg-gray-100 rounded-full transition-colors"
                                 >
                                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -165,61 +173,126 @@ export default function OurProduct() {
                                     </svg>
                                 </button>
                             </div>
-                            <div className="flex-1 flex">
-                                <div className="flex-1 bg-gray-50 flex items-center justify-center p-12">
-                                    <div className="relative w-full h-full max-h-[85vh] flex items-center justify-center">
-                                        {modalData.images[currentImageIndex] && (
-                                            <>
-                                                <img
-                                                    src={modalData.images[currentImageIndex]}
-                                                    alt={modalData.label}
-                                                    className="max-w-full max-h-full w-auto h-auto object-contain"
-                                                />
-                                                <button
-                                                    className="absolute left-4 p-3 rounded-full bg-white shadow-lg hover:bg-gray-100 transition-colors"
-                                                    onClick={() => setCurrentImageIndex((prev) => 
-                                                        (prev - 1 + modalData.images.length) % modalData.images.length
-                                                    )}
-                                                >
-                                                    &#8592;
-                                                </button>
-                                                <button
-                                                    className="absolute right-4 p-3 rounded-full bg-white shadow-lg hover:bg-gray-100 transition-colors"
-                                                    onClick={() => setCurrentImageIndex((prev) => 
-                                                        (prev + 1) % modalData.images.length
-                                                    )}
-                                                >
-                                                    &#8594;
-                                                </button>
-                                            </>
-                                        )}
+
+                            {/* Modal Content */}
+                            <div className="flex flex-col md:flex-row flex-1 min-h-0">
+                                {/* Main Image/Video Section */}
+                                <div className="flex-1 bg-gray-50 p-3 sm:p-4 md:p-6 min-h-0">
+                                    <div className="relative w-full h-full flex items-center justify-center bg-gray-100 rounded-lg">
+                                        <div className="relative w-[85%] h-[85%] flex items-center justify-center">
+                                            {modalData.images[currentImageIndex] && (
+                                                modalData.images[currentImageIndex].endsWith('.MP4') ? (
+                                                    <video 
+                                                        src={modalData.images[currentImageIndex]} 
+                                                        controls
+                                                        className="w-auto h-auto max-w-full max-h-[40vh] md:max-h-[45vh] object-contain rounded-md mx-auto"
+                                                    />
+                                                ) : (
+                                                    <>
+                                                        {!imageLoaded && (
+                                                            <div className="absolute inset-0 flex items-center justify-center">
+                                                                <div className="w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+                                                            </div>
+                                                        )}
+                                                        <img
+                                                            src={modalData.images[currentImageIndex]}
+                                                            alt={modalData.label}
+                                                            className={`w-auto h-auto max-w-full max-h-[40vh] md:max-h-[45vh] object-contain rounded-md shadow-sm transition-opacity duration-300 mx-auto ${
+                                                                imageLoaded ? 'opacity-100' : 'opacity-0'
+                                                            }`}
+                                                            onLoad={() => setImageLoaded(true)}
+                                                        />
+                                                    </>
+                                                )
+                                            )}
+
+                                            {/* Navigation Arrows */}
+                                            {modalData.images.length > 1 && (
+                                                <>
+                                                    <button
+                                                        className="absolute left-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/90 shadow-lg hover:bg-white transition-colors"
+                                                        onClick={() => {
+                                                            setImageLoaded(false);
+                                                            setCurrentImageIndex((prev) => 
+                                                                (prev - 1 + modalData.images.length) % modalData.images.length
+                                                            );
+                                                        }}
+                                                    >
+                                                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                                                        </svg>
+                                                    </button>
+                                                    <button
+                                                        className="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/90 shadow-lg hover:bg-white transition-colors"
+                                                        onClick={() => {
+                                                            setImageLoaded(false);
+                                                            setCurrentImageIndex((prev) => 
+                                                                (prev + 1) % modalData.images.length
+                                                            );
+                                                        }}
+                                                    >
+                                                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                                        </svg>
+                                                    </button>
+                                                </>
+                                            )}
+                                        </div>
                                     </div>
                                 </div>
-                                <div className="w-[400px] border-l p-8 overflow-y-auto">
-                                    <h3 className="text-lg font-semibold mb-4">Description</h3>
-                                    {renderDescription(modalData.description)}
-                                    <div className="space-y-4 mt-4">
-                                        <h3 className="text-lg font-semibold mb-4">Gallery</h3>
-                                        <div className="grid grid-cols-3 gap-3">
-                                            {modalData.images.map((src, idx) => (
-                                                <button
-                                                    key={idx}
-                                                    onClick={() => setCurrentImageIndex(idx)}
-                                                    className={`aspect-square rounded-lg overflow-hidden ${
-                                                        currentImageIndex === idx ? 'ring-2 ring-blue-500' : ''
-                                                    }`}
-                                                >
-                                                    <img src={src} alt="" className="w-full h-full object-cover" />
-                                                </button>
-                                            ))}
+
+                                {/* Sidebar */}
+                                <div className="w-full md:w-[400px] border-t md:border-t-0 md:border-l flex flex-col h-[40vh] md:h-full">
+                                    <div className="flex flex-col h-full overflow-hidden">
+                                        <div className="p-4 sm:p-6 overflow-y-auto">
+                                            <div className="mb-6 text-center md:text-left">
+                                                <h3 className="text-sm font-semibold text-gray-900 mb-2">Description</h3>
+                                                {renderDescription(modalData.description)}
+                                            </div>
+
+                                            {/* Thumbnails */}
+                                            <div className="text-center md:text-left">
+                                                <h3 className="text-sm font-semibold text-gray-900 mb-2">Gallery</h3>
+                                                <div className="grid grid-cols-4 sm:grid-cols-3 gap-2 max-w-[400px] mx-auto md:mx-0">
+                                                    {modalData.images.map((src, idx) => (
+                                                        <button
+                                                            key={idx}
+                                                            onClick={() => {
+                                                                setImageLoaded(false);
+                                                                setCurrentImageIndex(idx);
+                                                            }}
+                                                            className={`aspect-square rounded-md overflow-hidden ${
+                                                                currentImageIndex === idx ? 'ring-2 ring-blue-500' : ''
+                                                            }`}
+                                                        >
+                                                            {src.endsWith('.MP4') ? (
+                                                                <div className="w-full h-full bg-gray-100 flex items-center justify-center">
+                                                                    <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                                    </svg>
+                                                                </div>
+                                                            ) : (
+                                                                <div className="w-full h-full relative">
+                                                                    <img 
+                                                                        src={src} 
+                                                                        alt="" 
+                                                                        className="absolute inset-0 w-full h-full object-cover hover:opacity-90 transition-opacity" 
+                                                                    />
+                                                                </div>
+                                                            )}
+                                                        </button>
+                                                    ))}
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                )}
-            </div>
+                </div>
+            )}
             <Footer />
         </>
     );
