@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Ayah from "@/public/img/Ayah1.webp"
 import Adam from "@/public/img/Adam1.webp"
-import {AiFillInstagram, AiFillFacebook, AiFillYoutube} from "react-icons/ai"
 import {Separator} from "@/components/ui/separator";
 import {FaWhatsapp} from "react-icons/fa6";
 export default function OurTeam(){
@@ -50,9 +49,6 @@ export default function OurTeam(){
                                 </div>
                                 <div className="flex flex-row justify-center ">
                                     <a href="./" className="bg-white rounded-full p-4 m-3.5">
-                                        <AiFillFacebook className="text-4xl text-slate-700" />
-                                    </a>
-                                    <a href="./" className="bg-white rounded-full p-4 m-3.5">
                                         <FaWhatsapp  className="text-4xl text-slate-700" />
                                     </a>
                                 </div>
@@ -93,9 +89,6 @@ export default function OurTeam(){
                                     business strategy, aiming to bolster PT TSBU's market position in Asia.
                                 </div>
                                 <div className="flex flex-row justify-center ">
-                                    <a href="./" className="bg-white rounded-full p-4 m-3.5">
-                                        <AiFillFacebook className="text-4xl text-slate-700" />
-                                    </a>
                                     <a href="https://wa.me/818064228470" className="bg-white rounded-full p-4 m-3.5">
                                         <FaWhatsapp  className="text-4xl text-slate-700" />
                                     </a>

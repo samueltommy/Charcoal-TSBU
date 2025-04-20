@@ -6,8 +6,6 @@ import ResponsiveCarousel from "@/components/micro/carousel/responsive";
 
 // Move this outside component to prevent recreation on each render
 const features = [
-    '100% Coconut shell materials',
-    'Smokeless, odorless, low ash content',
     'Long burning time, quick ignition time',
     'Premium export quality'
 ]
@@ -37,9 +35,9 @@ export default function Profile() {
                         <div className={`${inter.className} text-gray-600 space-y-6 text-lg`}>
                             <p>
                                 PT. Tani Solusi Berjaya Utama specializes in the production and export of high-quality coconut 
-                                charcoal briquettes, crafted with extensive experience and a commitment to quality. The company 
-                                also engages in trading activities, focusing on partnerships with factories that produce sawdust 
-                                charcoal, wood pellets, binchotan charcoal, and palm shells. With years of experience in crafting 
+                                charcoal briquettes and sawdust briquesttes, crafted with extensive experience and a commitment to quality. 
+                                The company also engages in trading activities, focusing on partnerships with factories that produce wood pellets, 
+                                binchotan charcoal, and palm shells. With years of experience in crafting 
                                 premium charcoal briquettes, our factory is located in Grobogan, Central Java, Indonesia.
                             </p>
                             <p>

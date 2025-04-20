@@ -44,7 +44,7 @@ export default function Home() {
             {/*<OurProduct/>*/}
             {/*<AdvantageProduct/>*/}
             {/*<OurTeam/>*/}
-            <OurHighlight/>
+            {/*<OurHighlight/>*}
             <WhyChooseUs/>
             {/*<ProductionProsess/>*/}
             <OurCertificate/>
