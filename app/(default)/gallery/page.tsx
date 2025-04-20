@@ -145,7 +145,7 @@ export default function Gallery() {
     };
 
     const toggleGroupItemClasses = 
-        "px-6 py-3 flex items-center justify-center bg-white text-gray-600 first:rounded-l last:rounded-r hover:bg-gray-50 focus:z-10 focus:shadow-[0_0_0_2px] focus:shadow-blue-500 focus:outline-none data-[state=on]:bg-blue-500 data-[state=on]:text-white transition-all duration-200";
+        "px-8 py-4 flex items-center justify-center text-sm font-medium tracking-wide bg-white text-gray-600 first:rounded-l-xl last:rounded-r-xl hover:bg-gray-50 focus:z-10 focus:outline-none data-[state=on]:bg-blue-500 data-[state=on]:text-white data-[state=on]:shadow-lg transition-all duration-200 transform hover:scale-105 active:scale-95";
 
     return (
         <>
@@ -164,32 +164,34 @@ export default function Gallery() {
 
             {/* Modern Category Navigation */}
             <div className="container mx-auto px-4 mb-16">
-                <div className="flex justify-center space-x-8 border-b border-gray-200">
-                    <ToggleGroup.Root
-                        className="inline-flex rounded-lg shadow-md bg-gray-100 mb-12"
-                        type="single"
-                        defaultValue="Factory"
-                        value={selectedCategory}
-                        onValueChange={(value) => {
-                            if (value) {
-                                setIsLoading(true);
-                                setSelectedCategory(value);
-                                setTimeout(() => setIsLoading(false), 500);
-                            }
-                        }}                        
-                        aria-label="Category selection"
-                    >
-                        {["Factory", "Our Products", "Working Environment"].map((category) => (
-                            <ToggleGroup.Item
-                                key={category}
-                                className={toggleGroupItemClasses}
-                                value={category}
-                                aria-label={`${category} category`}
-                            >
-                                {category}
-                            </ToggleGroup.Item>
-                        ))}
-                    </ToggleGroup.Root>
+                <div className="flex justify-center">
+                    <div className="bg-gray-100/50 p-1.5 rounded-xl shadow-lg backdrop-blur-sm">
+                        <ToggleGroup.Root
+                            className="inline-flex rounded-xl bg-white/80 shadow-sm"
+                            type="single"
+                            defaultValue="Factory"
+                            value={selectedCategory}
+                            onValueChange={(value) => {
+                                if (value) {
+                                    setIsLoading(true);
+                                    setSelectedCategory(value);
+                                    setTimeout(() => setIsLoading(false), 500);
+                                }
+                            }}                        
+                            aria-label="Category selection"
+                        >
+                            {["Factory", "Our Products", "Working Environment"].map((category) => (
+                                <ToggleGroup.Item
+                                    key={category}
+                                    className={toggleGroupItemClasses}
+                                    value={category}
+                                    aria-label={`${category} category`}
+                                >
+                                    {category}
+                                </ToggleGroup.Item>
+                            ))}
+                        </ToggleGroup.Root>
+                    </div>
                 </div>
 
                 {/* Modern Masonry-style Grid */}
@@ -199,14 +201,14 @@ export default function Gallery() {
                             <div className="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
                         </div>
                     )}
-                    <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 transition-opacity duration-300 ${isLoading ? 'opacity-0' : 'opacity-100'}`}>
+                    <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12 transition-opacity duration-300 ${isLoading ? 'opacity-0' : 'opacity-100'}`}>
                         {filteredItems.map((item, index) => (
                             <div 
                                 key={index} 
                                 className="group transform transition-all duration-300 hover:translate-y-[-4px]"
                             >
                                 <div 
-                                    className="cursor-pointer overflow-hidden rounded-xl shadow-lg aspect-[4/3] mb-4 relative h-[300px]"
+                                    className="cursor-pointer overflow-hidden rounded-xl shadow-lg aspect-[4/3] mb-6 relative h-[250px] sm:h-[300px]"
                                     onClick={() => setModalData(item)}
                                 >
                                     <img
@@ -215,7 +217,7 @@ export default function Gallery() {
                                         className="absolute w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105"
                                     />
                                 </div>
-                                <h3 className="text-lg font-medium text-gray-800 text-center group-hover:text-blue-600 transition-colors duration-300">
+                                <h3 className="text-xl font-medium text-gray-800 text-center group-hover:text-blue-600 transition-colors duration-300">
                                     {item.label}
                                 </h3>
                             </div>
@@ -250,13 +252,13 @@ export default function Gallery() {
                                 {/* Main Image/Video Section */}
                                 <div className="flex-1 bg-gray-50 p-3 sm:p-4 md:p-6 min-h-0">
                                     <div className="relative w-full h-full flex items-center justify-center bg-gray-100 rounded-lg">
-                                        <div className="relative w-[85%] h-[85%] flex items-center justify-center">
+                                        <div className="relative w-[95%] h-[95%] flex items-center justify-center">
                                             {modalData.images[currentImageIndex] && (
                                                 modalData.images[currentImageIndex].endsWith('.MP4') ? (
                                                     <video 
                                                         src={modalData.images[currentImageIndex]} 
                                                         controls
-                                                        className="w-auto h-auto max-w-full max-h-[40vh] md:max-h-[45vh] object-contain rounded-md mx-auto"
+                                                        className="w-auto h-auto max-w-full max-h-[50vh] md:max-h-[60vh] object-contain rounded-md mx-auto"
                                                     />
                                                 ) : (
                                                     <>
@@ -268,7 +270,7 @@ export default function Gallery() {
                                                         <img
                                                             src={modalData.images[currentImageIndex]}
                                                             alt={modalData.label}
-                                                            className={`w-auto h-auto max-w-full max-h-[40vh] md:max-h-[45vh] object-contain rounded-md shadow-sm transition-opacity duration-300 mx-auto ${
+                                                            className={`w-auto h-auto max-w-full max-h-[50vh] md:max-h-[60vh] object-contain rounded-md shadow-sm transition-opacity duration-300 mx-auto ${
                                                                 imageLoaded ? 'opacity-100' : 'opacity-0'
                                                             }`}
                                                             onLoad={() => setImageLoaded(true)}
