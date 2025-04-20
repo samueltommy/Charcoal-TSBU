@@ -185,7 +185,7 @@ export default function OurProduct() {
                                                     <video 
                                                         src={modalData.images[currentImageIndex]} 
                                                         controls
-                                                        className="w-auto h-auto max-w-full max-h-[40vh] md:max-h-[45vh] object-contain rounded-md mx-auto"
+                                                        className="w-auto h-auto max-w-full max-h-[50vh] md:max-h-[60vh] object-contain rounded-md mx-auto"
                                                     />
                                                 ) : (
                                                     <>
@@ -197,7 +197,7 @@ export default function OurProduct() {
                                                         <img
                                                             src={modalData.images[currentImageIndex]}
                                                             alt={modalData.label}
-                                                            className={`w-auto h-auto max-w-full max-h-[40vh] md:max-h-[45vh] object-contain rounded-md shadow-sm transition-opacity duration-300 mx-auto ${
+                                                            className={`w-auto h-auto max-w-full max-h-[50vh] md:max-h-[60vh] object-contain rounded-md shadow-sm transition-opacity duration-300 mx-auto ${
                                                                 imageLoaded ? 'opacity-100' : 'opacity-0'
                                                             }`}
                                                             onLoad={() => setImageLoaded(true)}
