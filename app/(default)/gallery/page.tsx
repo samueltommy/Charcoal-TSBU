@@ -248,7 +248,7 @@ export default function Gallery() {
                                 className="group transform transition-all duration-300 hover:translate-y-[-4px]"
                             >
                                 <div 
-                                    className="cursor-pointer overflow-hidden rounded-xl shadow-lg mb-6 relative aspect-square sm:aspect-[4/3]"
+                                    className="cursor-pointer overflow-hidden rounded-xl shadow-lg aspect-[4/3] mb-6 relative h-[250px] sm:h-[300px]"
                                     onClick={() => setModalData(item)}
                                 >
                                     {item.images.length > 0 ? (
@@ -309,7 +309,31 @@ export default function Gallery() {
                                 <div className="flex-1 bg-gray-50 p-3 sm:p-4 md:p-6 min-h-0">
                                     <div className="relative w-full h-full flex items-center justify-center bg-gray-100 rounded-lg">
                                         <div className="relative w-[95%] h-[95%] flex items-center justify-center">
-                                            {renderMedia(modalData, currentImageIndex)}
+                                            {modalData.images[currentImageIndex] && (
+                                                modalData.images[currentImageIndex].endsWith('.MP4') ? (
+                                                    <video 
+                                                        src={modalData.images[currentImageIndex]} 
+                                                        controls
+                                                        className="w-auto h-auto max-w-full max-h-[50vh] md:max-h-[60vh] object-contain rounded-md mx-auto"
+                                                    />
+                                                ) : (
+                                                    <>
+                                                        {!imageLoaded && (
+                                                            <div className="absolute inset-0 flex items-center justify-center">
+                                                                <div className="w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+                                                            </div>
+                                                        )}
+                                                        <img
+                                                            src={modalData.images[currentImageIndex]}
+                                                            alt={modalData.label}
+                                                            className={`w-auto h-auto max-w-full max-h-[50vh] md:max-h-[60vh] object-contain rounded-md shadow-sm transition-opacity duration-300 mx-auto ${
+                                                                imageLoaded ? 'opacity-100' : 'opacity-0'
+                                                            }`}
+                                                            onLoad={() => setImageLoaded(true)}
+                                                        />
+                                                    </>
+                                                )
+                                            )}
 
                                             {/* Navigation Arrows */}
                                             {modalData.images.length + (modalData.videos?.length || 0) > 1 && (
