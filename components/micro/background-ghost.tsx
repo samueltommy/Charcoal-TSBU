@@ -9,10 +9,9 @@ import bg2 from "@/public/img/bg2.webp";
 import bg3 from "@/public/img/bg3.webp";
 import product1 from "@/public/img/Sawdust_Package.jpg";
 import product2 from "@/public/img/WhatsApp Image 2024-09-21 at 22.21.53_01f36e97.jpg";
-import product3 from "@/public/img/Session2Home1.jpg";
 import product4 from "@/public/img/DSCF2658.jpg";
 
-const galleryImages = [bg1, bg2, product3, product4];
+const galleryImages = [bg1, bg2, product4];
 const productImages = [bg3, product1, product2];
 
 export default function BackgroundGhost() {
