@@ -16,8 +16,10 @@ export default function About() {
       <ProfileCompany
         text={`
           1. Shisha/Hookah Briquettes: Tailored for the perfect smoking experience.<br/>
-          2. Barbecue Briquettes: Ignite the flavor of your grills.<br/>
-          3. Hardwood/Lump Charcoal: Pure, robust, and ideal for an authentic barbecue experience.<br/><br/>
+          2. Barbecue Briquettes (Sawdust and Coconut): Ignite the flavor of your grills.<br/>
+          3. Binchotan Charcoal: Premium quality for 3. gourmet barbecues.<br/>
+          4. Hardwood Charcoal: Robust and ideal for an authentic barbecue experience.<br/>
+          5. Wood Pallet and Palm Shell: Efficient biomass for power generation and industrial heating.<br/><br/>
           For each of these premium products, we offer bespoke grading and specifications, tailored to your exact needs.
           Additionally, our packaging solutions are fully customizable, ensuring that your requirements are met to perfection.
           Our dedication to quality spans from the selection of raw materials, through the meticulous processes,

@@ -48,7 +48,7 @@ function Hero() {
                 </h1>
 
                 <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-                    <Link href="/our-product" 
+                    <Link href="/our-products" 
                         className={`
                             px-6 py-2.5 
                             rounded-full 
