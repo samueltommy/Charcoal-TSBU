@@ -8,7 +8,7 @@ export default function AdvantageProduct() {
         <>
             <div className={`text-center mt-10`}>
                 {/*<p className={`${inter.className} text-slate-500 text-md font-bold`}>Fueling the Future: Clean Burn, Longer Lasting, Eco-Friendly Briquettes</p>*/}
-                <h2 data-aos="fade-up" className={`h2 mb-4 `}>The Advantages Of Our Product</h2>
+                <h2 data-aos="fade-up" className={`h2 mb-4 `}>The Advantages Of Our Products</h2>
                 <div data-aos="fade-up" className="flex flex-row gap-3 justify-center my-4 ">
                     <Separator className={"w-12 border-2 rounded-sm border-[#1C4225]"}/><Separator className={"w-2 border-2 rounded-sm border-[#1C4225]"}/>
                 </div>

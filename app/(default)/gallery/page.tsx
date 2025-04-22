@@ -5,14 +5,25 @@ import BackgroundGhost from "@/components/micro/background-ghost";
 import Footer from "@/components/micro/footer";
 import * as ToggleGroup from "@radix-ui/react-toggle-group";
 
-
 interface GalleryItem {
     label: string;
     description: string;
     category: string;
-    images: string[]; // Array of images for the carousel
+    images: string[];
+    videos?: {
+        src: string;
+        thumbnail: string;
+    }[];
 }
+
 const galleryItems: GalleryItem[] = [
+    { 
+        label: "Coconut Briquette Factory Profile", 
+        description: "A short video for our Coconut Briquette Factory",
+        category: "Factory",
+        images: [], // No images for this item
+        videos: [{ src: "/videos/Company Profile Video.MP4", thumbnail: "/img/video_thumb.webp" }] // Move MP4 files here
+    },
     { 
         label: "Factory Front View", 
         description: "Here is the front view of the charcoal factory, showcasing a corrugated metal roof, green and gray painted walls.",
@@ -56,34 +67,46 @@ const galleryItems: GalleryItem[] = [
         images: ["/img/HARDWOODOVEN.JPG"]
     },
     { 
-        label: "BBQ Coconut Briquttes", 
-        description: "BBQ coconut briquettes are eco-friendly, high-performance charcoal made from compressed coconut shells. Designed for grilling, they provide a long-lasting, consistent heat with minimal smoke and ash. Free from additives or chemicals, these briquettes ensure a clean burn, preserving the natural flavors of food while being an environmentally responsible choice for barbecue enthusiasts.",
-        category: "Our Products",
-        images: ["/img/BC1.JPG", "/img/BC2.JPG"]
+        label: "Sawdust Factory", 
+        description: "At Sawdust Briquette Factory, we utilize three key components to produce high-quality briquettes: <br> • Raw Sawdust Storage: This keeps our hardwood sawdust (Mahoni & Bengkirai) dry and ready for processing.<br>• Sawdust Compressor: This compresses raw sawdust into hexagonal blocks.<br>• Sawdust Kiln: Where the blocks are carbonized into charcoal.",
+        category: "Factory",
+        images: [],
+        videos: [{ src: "/videos/Sawdust_Factory.mp4", thumbnail: "/img/Screenshot 2025-04-21 230946.png" }]
     },
     { 
-        label: "Coconut Shell Charcoal", 
-        description: "Coconut shell charcoal is a sustainable, natural product made by carbonizing dried coconut shells. Renowned for its eco-friendly production, it burns cleanly with minimal smoke and ash. Commonly used in grilling, shisha, and industrial applications, it provides long-lasting, consistent heat and is free from harmful chemicals, making it a versatile and environmentally conscious choice.",
-        category: "Our Products",
-        images: ["/img/DSCF3032.JPG", "/img/DSCF3027.JPG"]
+        label: "Raw Sawdust Storage", 
+        description: "Our raw sawdust storage is designed to securely hold high-quality sawdust sourced from our wood factory partners. The sawdust, primarily from durable hardwoods like Mahoni and Bengkirai, is kept dry and free from contaminants to ensure optimal briquette production. Proper ventilation and moisture control are maintained to preserve the material’s quality, making it ideal for efficient and high-density sawdust briquettes.",
+        category: "Factory",
+        images: [],
+        videos: [
+            { src: "/videos/Sawdust_Material3.mp4", thumbnail: "/img/Screenshot 2025-04-21 230749.png" },
+            { src: "/videos/Sawdust_Material.mp4", thumbnail: "/img/Screenshot 2025-04-21 230735.png" }
+        ]
     },
     { 
-        label: "Shisha Coconut Briquettes", 
-        description: "Shisha coconut briquettes are eco-friendly, high-quality charcoal made from compressed coconut shells. They are specifically designed for use in shisha or hookah, offering a clean and consistent burn with minimal ash and no harmful chemicals. Known for their long burn time and even heat distribution, these briquettes enhance the shisha experience by delivering pure flavor without overpowering smoke.",
-        category: "Our Products",
-        images: ["/img/DSCF2897.JPG", "/img/DSCF2624.JPG", "/img/DSCF2898.JPG", "/img/DSCF2943.JPG"]
+        label: "Sawdust Briquesttes Compressor", 
+        description: "Our sawdust compressor machine efficiently compacts raw sawdust into dense hexagonal blocks, ideal for further carbonization. Designed for high-pressure compression, it ensures uniform shape and density. This machine enhances the briquette-making process by producing high-quality, compact sawdust blocks ready for carbonization into premium charcoal products.",
+        category: "Factory",
+        images: [],
+        videos: [
+            { src: "/videos/Sawdust_Compressor5.mp4", thumbnail: "/img/Screenshot 2025-04-21 230816.png" },
+            { src: "/videos/Sawdust_Compressor6.mp4", thumbnail: "/img/Screenshot 2025-04-21 230841.png" },
+            { src: "/videos/Sawdust_Compressor.mp4", thumbnail: "/img/Screenshot 2025-04-21 230801.png" }
+        ]
     },
     { 
-        label: "BBQ Sawdust Briquettes", 
-        description: "BBQ sawdust briquettes are eco-friendly charcoal made by compressing recycled sawdust into dense, high-performance blocks. Ideal for grilling, they offer consistent heat, a long burn time, and minimal smoke. Free from harmful chemicals, these briquettes ensure a clean and natural cooking experience while promoting sustainable waste utilization.",
-        category: "Our Products",
-        images: ["/img/sawdust4.JPG", "/img/BS1.webp", "/img/BCVID.mp4"]
+        label: "Sawdust Kiln", 
+        description: "Our Sawdust Kiln is designed for the carbonization process, transforming compressed sawdust blocks into high-quality charcoal. The process takes approximately four days, reaching peak temperatures of 700°C, followed by a one-week cooldown period. This controlled heating and cooling ensure efficient carbonization, producing durable and high-energy briquettes.",
+        category: "Factory",
+        images: ["/img/Sawdust_Kiln2.jpg", "/img/Sawdust_Kiln3.JPG"],
+        videos: [{ src: "/videos/Sawdust_Kiln_Video3.mp4", thumbnail: "/img/Screenshot 2025-04-21 230913.png" }]
     },
     { 
-        label: "Binchotan Charcoal", 
-        description: "Binchotan charcoal, also known as white charcoal, is a high-quality, traditional Japanese charcoal made from hardwoods like oak. Renowned for its clean burn, high heat, and ability to enhance flavors, it is widely used in grilling. The wood is heated in a kiln at a low temperature (around 200–400°C) for several days to remove moisture and impurities. In the final stage, the temperature is rapidly increased to approximately 900°C before the charcoal is removed and quickly cooled using sand or ash. This high-temperature exposure creates a hard, white outer layer, giving Binchotan its unique structure, clean-burning properties, and long-lasting qualities.",
-        category: "Our Products",
-        images: ["/img/produk1.JPG", "/img/produk2.JPG", "/img/video_binchotan.MP4", "/img/video_binchotan2.MP4"]
+        label: "Sawdust Briquette Storage", 
+        description: "Our Sawdust Briquette Storage is where finished briquettes are stored and categorized based on quality. This ensures proper organization and quality control before packaging. The storage area keeps the briquettes dry and in optimal condition, ready for distribution.",
+        category: "Factory",
+        images: ["/img/Sawdust_Storage4.JPG", "/img/Sawdust_Storage5.JPG"],
+        videos: [{ src: "/videos/Sawdust_Storage_Video.mp4", thumbnail: "/img/Screenshot 2025-04-21 230930.png" }]
     },
     { 
         label: "Working Environment", 
@@ -115,33 +138,49 @@ export default function Gallery() {
     const filteredItems = galleryItems.filter((item) => item.category === selectedCategory);
 
     const renderDescription = (description: string) => {
-        const parts = description.split('<br>');
         return (
-            <div>
-                {parts.map((part, i) => (
-                    <p key={i} className="mb-2">
-                        {part.startsWith('- ') ? <li>{part.replace('- ', '')}</li> : part}
-                    </p>
-                ))}
-            </div>
+            <div 
+                className="text-sm text-gray-600 leading-relaxed"
+                dangerouslySetInnerHTML={{ __html: description }}
+            />
         );
     };
 
-    const renderMedia = (src: string | undefined) => {
-        if (!src) return null;
-        
-        if (src.endsWith('.MP4')) {
+    const renderMedia = (item: GalleryItem, index: number) => {
+        if (item.videos && index >= item.images.length) {
             return (
                 <video
-                    src={src}
+                    key={item.videos[index - item.images.length].src}
                     controls
-                    className="w-full h-auto object-contain"
+                    autoPlay
+                    className="max-w-full max-h-[60vh] rounded-lg shadow-lg"
                 >
+                    <source 
+                        src={item.videos[index - item.images.length].src} 
+                        type="video/mp4" 
+                    />
                     Your browser does not support the video tag.
                 </video>
             );
         }
-        return <img src={src} alt="media" className="w-full h-auto object-contain" />;
+
+        return (
+            <>
+                {!imageLoaded && (
+                    <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+                    </div>
+                )}
+                <img 
+                    src={item.images[index]} 
+                    alt={item.label}
+                    className={`w-auto h-auto max-w-full max-h-[60vh] object-contain rounded-md shadow-sm transition-opacity duration-300 ${
+                        imageLoaded ? 'opacity-100' : 'opacity-0'
+                    }`}
+                    onLoad={() => setImageLoaded(true)}
+                />
+            </>
+        );
     };
 
     const toggleGroupItemClasses = 
@@ -150,13 +189,14 @@ export default function Gallery() {
     return (
         <>
             <Header active={"gallery"} />
+            <BackgroundGhost />
 
             {/* Gallery Hero Section */}
             <div className="relative text-black mt-8 py-16">
                 <div className="container mx-auto px-4">
                     <h1 className="text-5xl h1 mb-6 text-center">Our Gallery</h1>
                     <p className="text-xl text-gray-500 text-center max-w-3xl mx-auto leading-relaxed">
-                        Explore our collection of high-quality charcoal products and get a glimpse into our modern production facility
+                    Explore our collection of our production facility
                     </p>
                 </div>
                 <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-white to-transparent"></div>
@@ -180,7 +220,7 @@ export default function Gallery() {
                             }}                        
                             aria-label="Category selection"
                         >
-                            {["Factory", "Our Products", "Working Environment"].map((category) => (
+                            {["Factory", "Working Environment"].map((category) => (
                                 <ToggleGroup.Item
                                     key={category}
                                     className={toggleGroupItemClasses}
@@ -208,14 +248,30 @@ export default function Gallery() {
                                 className="group transform transition-all duration-300 hover:translate-y-[-4px]"
                             >
                                 <div 
-                                    className="cursor-pointer overflow-hidden rounded-xl shadow-lg aspect-[4/3] mb-6 relative h-[250px] sm:h-[300px]"
+                                    className="cursor-pointer overflow-hidden rounded-xl shadow-lg mb-6 relative aspect-square sm:aspect-[4/3]"
                                     onClick={() => setModalData(item)}
                                 >
-                                    <img
-                                        src={item.images[0]}
-                                        alt={item.label}
-                                        className="absolute w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105"
-                                    />
+                                    {item.images.length > 0 ? (
+                                        <img
+                                            src={item.images[0]}
+                                            alt={item.label}
+                                            className="absolute w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105"
+                                        />
+                                    ) : item.videos && item.videos.length > 0 ? (
+                                        <div className="relative w-full h-full">
+                                            <img
+                                                src={item.videos[0].thumbnail}
+                                                alt={item.label}
+                                                className="absolute w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105"
+                                            />
+                                            <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
+                                                <svg className="w-12 h-12 text-white opacity-90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    ) : null}
                                 </div>
                                 <h3 className="text-xl font-medium text-gray-800 text-center group-hover:text-blue-600 transition-colors duration-300">
                                     {item.label}
@@ -253,41 +309,17 @@ export default function Gallery() {
                                 <div className="flex-1 bg-gray-50 p-3 sm:p-4 md:p-6 min-h-0">
                                     <div className="relative w-full h-full flex items-center justify-center bg-gray-100 rounded-lg">
                                         <div className="relative w-[95%] h-[95%] flex items-center justify-center">
-                                            {modalData.images[currentImageIndex] && (
-                                                modalData.images[currentImageIndex].endsWith('.MP4') ? (
-                                                    <video 
-                                                        src={modalData.images[currentImageIndex]} 
-                                                        controls
-                                                        className="w-auto h-auto max-w-full max-h-[50vh] md:max-h-[60vh] object-contain rounded-md mx-auto"
-                                                    />
-                                                ) : (
-                                                    <>
-                                                        {!imageLoaded && (
-                                                            <div className="absolute inset-0 flex items-center justify-center">
-                                                                <div className="w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
-                                                            </div>
-                                                        )}
-                                                        <img
-                                                            src={modalData.images[currentImageIndex]}
-                                                            alt={modalData.label}
-                                                            className={`w-auto h-auto max-w-full max-h-[50vh] md:max-h-[60vh] object-contain rounded-md shadow-sm transition-opacity duration-300 mx-auto ${
-                                                                imageLoaded ? 'opacity-100' : 'opacity-0'
-                                                            }`}
-                                                            onLoad={() => setImageLoaded(true)}
-                                                        />
-                                                    </>
-                                                )
-                                            )}
+                                        {renderMedia(modalData, currentImageIndex)}
 
                                             {/* Navigation Arrows */}
-                                            {modalData.images.length > 1 && (
+                                            {modalData.images.length + (modalData.videos?.length || 0) > 1 && (
                                                 <>
                                                     <button
                                                         className="absolute left-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/90 shadow-lg hover:bg-white transition-colors"
                                                         onClick={() => {
                                                             setImageLoaded(false);
                                                             setCurrentImageIndex((prev) => 
-                                                                (prev - 1 + modalData.images.length) % modalData.images.length
+                                                                (prev - 1 + modalData.images.length + (modalData.videos?.length || 0)) % (modalData.images.length + (modalData.videos?.length || 0))
                                                             );
                                                         }}
                                                     >
@@ -300,7 +332,7 @@ export default function Gallery() {
                                                         onClick={() => {
                                                             setImageLoaded(false);
                                                             setCurrentImageIndex((prev) => 
-                                                                (prev + 1) % modalData.images.length
+                                                                (prev + 1) % (modalData.images.length + (modalData.videos?.length || 0))
                                                             );
                                                         }}
                                                     >
@@ -320,16 +352,17 @@ export default function Gallery() {
                                         <div className="p-4 sm:p-6 overflow-y-auto">
                                             <div className="mb-6 text-center md:text-left">
                                                 <h3 className="text-sm font-semibold text-gray-900 mb-2">Description</h3>
-                                                <p className="text-sm text-gray-600 leading-relaxed">{modalData.description}</p>
+                                                {renderDescription(modalData.description)}
                                             </div>
 
                                             {/* Thumbnails */}
                                             <div className="text-center md:text-left">
                                                 <h3 className="text-sm font-semibold text-gray-900 mb-2">Gallery</h3>
                                                 <div className="grid grid-cols-4 sm:grid-cols-3 gap-2 max-w-[400px] mx-auto md:mx-0">
-                                                    {modalData.images.map((src, idx) => (
+                                                    {/* Images */}
+                                                    {modalData.images.length > 0 && modalData.images.map((src, idx) => (
                                                         <button
-                                                            key={idx}
+                                                            key={`img-${idx}`}
                                                             onClick={() => {
                                                                 setImageLoaded(false);
                                                                 setCurrentImageIndex(idx);
@@ -338,22 +371,41 @@ export default function Gallery() {
                                                                 currentImageIndex === idx ? 'ring-2 ring-blue-500' : ''
                                                             }`}
                                                         >
-                                                            {src.endsWith('.MP4') ? (
-                                                                <div className="w-full h-full bg-gray-100 flex items-center justify-center">
-                                                                    <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <div className="w-full h-full relative">
+                                                                <img 
+                                                                    src={src} 
+                                                                    alt="" 
+                                                                    className="absolute inset-0 w-full h-full object-cover hover:opacity-90 transition-opacity" 
+                                                                />
+                                                            </div>
+                                                        </button>
+                                                    ))}
+                                                    
+                                                    {/* Videos */}
+                                                    {modalData.videos?.map((video, idx) => (
+                                                        <button
+                                                            key={`video-${idx}`}
+                                                            onClick={() => {
+                                                                setImageLoaded(false);
+                                                                setCurrentImageIndex(modalData.images.length + idx);
+                                                            }}
+                                                            className={`aspect-square rounded-md overflow-hidden relative ${
+                                                                currentImageIndex === modalData.images.length + idx ? 'ring-2 ring-blue-500' : ''
+                                                            }`}
+                                                        >
+                                                            <div className="w-full h-full relative">
+                                                                <img 
+                                                                    src={video.thumbnail}
+                                                                    alt="Video thumbnail"
+                                                                    className="absolute inset-0 w-full h-full object-cover"
+                                                                />
+                                                                <div className="absolute inset-0 bg-black/30 flex items-center justify-center hover:bg-black/40 transition-colors">
+                                                                    <svg className="w-8 h-8 text-white opacity-90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
                                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                                                     </svg>
                                                                 </div>
-                                                            ) : (
-                                                                <div className="w-full h-full relative">
-                                                                    <img 
-                                                                        src={src} 
-                                                                        alt="" 
-                                                                        className="absolute inset-0 w-full h-full object-cover hover:opacity-90 transition-opacity" 
-                                                                    />
-                                                                </div>
-                                                            )}
+                                                            </div>
                                                         </button>
                                                     ))}
                                                 </div>
